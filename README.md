@@ -1,2 +1,2 @@
-# shop-wechat
-针对海风小店的微信小程序写的后台
+# shop-admin
+针对海风小店后台管理系统用springboot重写后台服务器
