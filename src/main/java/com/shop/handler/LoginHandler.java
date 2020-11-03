@@ -8,13 +8,15 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
+import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
+@Component
 public class LoginHandler {
 
     //获取openid
-    public static Map<String, Object> getWxUserOpenid(String code, String APPID, String APPSecret) {
+    public Map<String, Object> getWxUserOpenid(String code, String APPID, String APPSecret) {
         //拼接url
         StringBuilder url = new StringBuilder("https://api.weixin.qq.com/sns/jscode2session?");
         url.append("appid=");//appid设置

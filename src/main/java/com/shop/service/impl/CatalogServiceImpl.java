@@ -25,7 +25,7 @@ public class CatalogServiceImpl implements CatalogService {
     public CatalogCurrentListVo getCurrentList(CatalogPageReq catalogPageReq) {
         int goodsCount = goodsMapper.getGoodsCount();
         int totalPage = (goodsCount - 1) / catalogPageReq.getSize() + 1;
-        List<CatalogGoods> catalogGoodsList = goodsMapper.getCatalogGoods(catalogPageReq.getPage() * catalogPageReq.getSize(), catalogPageReq.getSize());
+        List<CatalogGoods> catalogGoodsList = goodsMapper.getCatalogGoods(catalogPageReq.getPage() * catalogPageReq.getSize(), catalogPageReq.getSize(), catalogPageReq.getId());
         CatalogCurrentListVo catalogCurrentListVo = new CatalogCurrentListVo();
         catalogCurrentListVo.setCount(goodsCount);
         catalogCurrentListVo.setCurrentPage(catalogPageReq.getPage());

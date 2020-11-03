@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shop.mapper.CartMapper">
+
+    <select id="getGoodsCount" resultType="java.lang.Integer">
+        SELECT
+        COUNT(*)
+        FROM hiolabs_cart
+        WHERE hiolabs_cart.user_id=1028
+        GROUP BY hiolabs_cart.goods_id
+    </select>
+
+</mapper>

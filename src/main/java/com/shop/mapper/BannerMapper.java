@@ -9,7 +9,7 @@ import java.util.List;
 @Mapper
 public interface BannerMapper {
 
-    @Select("SELECT * FROM hiolabs_ad WHERE is_delete=0;")
+//    @Select("SELECT * FROM hiolabs_ad WHERE is_delete=0;")
     public List<Banner> getUseBanner();
 
 

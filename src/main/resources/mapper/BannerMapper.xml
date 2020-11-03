@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shop.mapper.BannerMapper">
+
+    <resultMap id="BaseResultMap" type="com.shop.entity.Banner">
+        <result column="id" jdbcType="INTEGER" property="id" />
+        <result column="link_type" jdbcType="INTEGER" property="link_type" />
+        <result column="link" jdbcType="VARCHAR" property="link" />
+        <result column="goods_id" jdbcType="INTEGER" property="goods_id" />
+        <result column="image_url" jdbcType="VARCHAR" property="image_url" />
+        <result column="end_time" jdbcType="INTEGER" property="end_time" />
+        <result column="enabled" jdbcType="TINYINT" property="enabled"/>
+        <result column="sort_order" jdbcType="TINYINT" property="sort_order"/>
+        <result column="is_delete" jdbcType="TINYINT" property="is_delete" />
+    </resultMap>
+
+
+
+    <sql id="base_column">
+        id,link_type,link,goods_id,image_url,end_time,enabled,sort_order,is_delete
+    </sql>
+
+<!--    结果为list但是结果类型类string-->
+    <select id="getUseBanner" resultType="com.shop.entity.Banner">
+        select *
+        from hiolabs_ad
+        where is_delete=0
+    </select>
+
+<!--    <select id="isForcedUpgrade" resultType="java.lang.Integer">-->
+<!--        select upgrade_compulsively from sp_app_version-->
+<!--        where app_type = #{appType}-->
+<!--        and version_number > #{versionNum}-->
+<!--        and upgrade_compulsively = 1-->
+<!--        limit 1-->
+<!--    </select>-->
+
+</mapper>

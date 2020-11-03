@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shop.mapper.CategoryMapper">
+
+    <select id="getChannelCategory"  resultType="com.shop.entity.Category">
+        SELECT * FROM hiolabs_category WHERE is_channel=1
+    </select>
+
+    <select id="getListCategory" resultType="com.shop.entity.Category">
+        SELECT * FROM hiolabs_category WHERE is_category=1
+    </select>
+
+    <select id="getCatalogCategory" parameterType="java.lang.Integer" resultType="com.shop.entity.CatalogCategory">
+        SELECT id,name,img_url,p_height FROM hiolabs_category WHERE id=#{id} AND is_category=1
+    </select>
+
+</mapper>

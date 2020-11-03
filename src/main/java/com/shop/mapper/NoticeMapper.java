@@ -9,7 +9,7 @@ import java.util.List;
 @Mapper
 public interface NoticeMapper {
 
-    @Select("SELECT * FROM hiolabs_notice")
+//    @Select("SELECT * FROM hiolabs_notice")
     public List<Notice> getNoticeList();
 
 }

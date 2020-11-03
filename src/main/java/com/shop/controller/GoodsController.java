@@ -2,11 +2,10 @@ package com.shop.controller;
 
 import com.shop.result.Result;
 import com.shop.service.GoodsService;
+import com.shop.vo.DetailVo;
 import com.shop.vo.IndexGoodsCount;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/goods")
@@ -20,6 +19,13 @@ public class GoodsController {
         IndexGoodsCount indexGoodsCount = new IndexGoodsCount();
         indexGoodsCount.setGoodsCount(goodsService.getGoodsCount());
         return Result.success(indexGoodsCount);
+    }
+
+    @GetMapping("/detail")
+    @ResponseBody
+    public Result<DetailVo> getDetail(@RequestParam Integer id) {
+        DetailVo detailInfo = goodsService.getDetailInfo(id);
+        return Result.success(detailInfo);
     }
 
 }
