@@ -1,12 +1,23 @@
 package com.shop.mapper;
 
+import com.shop.entity.Cart;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 @Mapper
 public interface CartMapper {
 
-//    @Select("SELECT COUNT(*) FROM hiolabs_cart WHERE hiolabs_cart.user_id=1028 GROUP BY hiolabs_cart.goods_id")
-    public Integer getGoodsCount();
+    public Integer getGoodsCount(Integer uid);
+
+    public List<Cart> getCartList(Integer id);
+
+    public Integer getCartByUidAndPid(@Param("uid") Integer uid, @Param("productId") Integer productId);
+
+    public void updateProductNumber(@Param("id") Integer id, @Param("number") Integer number);
+
+    public void addCart(@Param("cart") Cart cart);
 
 }

@@ -13,4 +13,6 @@ public interface GoodsService {
 
     public DetailVo getDetailInfo(Integer goods_id);
 
+    public Goods getGoodsById(Integer goods_id);
+
 }

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shop.mapper.OrderMapper">
+
+    <select id="getToPayOrderCount" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        SELECT COUNT(id) FROM hiolabs_order WHERE user_id=1048 AND order_status=101
+    </select>
+
+    <select id="getToDeliveryCount" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        SELECT COUNT(id) FROM hiolabs_order WHERE user_id=1048 AND order_status=201
+    </select>
+
+    <select id="getToReceiveOrderCount" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        SELECT COUNT(id) FROM hiolabs_order WHERE user_id=1048 AND order_status=301
+    </select>
+
+</mapper>

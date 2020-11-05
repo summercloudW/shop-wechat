@@ -11,4 +11,6 @@ public interface GoodsSpecificationMapper {
 
     public List<GoodsSpecification> getGoodsSpecificationByGid(Integer goodsSpecificationId);
 
+    public String getSpecificationValueById(Integer goodsSpecificationId);
+
 }

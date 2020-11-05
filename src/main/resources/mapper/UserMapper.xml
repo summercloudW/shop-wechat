@@ -8,8 +8,7 @@
 
 
     <insert id="register" parameterType="com.shop.entity.User">
-        INSERT name,nickName,username,password,gender,birthday,register_time,last_login_time,last_login_ip,mobile,register_ip,avatar,weixin_openid,name_mobile,city,province,country
-        INTO hiolabs_user
+        INSERT INTO hiolabs_user (name,nickName,username,password,gender,birthday,register_time,last_login_time,last_login_ip,mobile,register_ip,avatar,weixin_openid,name_mobile,city,province,country)
         values(#{user.name},#{user.nickName},#{user.username},#{user.password},#{user.gender},#{user.birthday},#{user.register_time},#{user.last_login_time},#{user.last_login_ip},#{user.mobile},#{user.register_ip},#{user.avatar},#{user.weixin_openid},#{user.name_mobile},#{user.city},#{user.province},#{user.country})
     </insert>
 

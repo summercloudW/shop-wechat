@@ -6,4 +6,8 @@
         SELECT * FROM hiolabs_goods_specification WHERE id=#{goodsSpecificationId}
     </select>
 
+    <select id="getSpecificationValueById" parameterType="java.lang.Integer" resultType="java.lang.String">
+        SELECT value FROM hiolabs_goods_specification where id=#{goodsSpecificationId}
+    </select>
+
 </mapper>

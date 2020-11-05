@@ -2,12 +2,35 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.shop.mapper.CartMapper">
 
-    <select id="getGoodsCount" resultType="java.lang.Integer">
+    <select id="getGoodsCount" parameterType="java.lang.Integer" resultType="java.lang.Integer">
         SELECT
-        COUNT(*)
+        SUM(number)
         FROM hiolabs_cart
-        WHERE hiolabs_cart.user_id=1028
-        GROUP BY hiolabs_cart.goods_id
+        WHERE hiolabs_cart.user_id=#{uid} AND is_delete=0
     </select>
+
+    <select id="getCartList" parameterType="java.lang.Integer" resultType="com.shop.entity.Cart">
+        SELECT * FROM hiolabs_cart WHERE user_id=#{user_id} AND is_delete=0
+    </select>
+
+    <select id="getCartByUidAndPid" resultType="java.lang.Integer">
+        SELECT id FROM hiolabs_cart WHERE user_id=#{uid} AND product_id=#{productId} AND is_delete=0
+    </select>
+
+    <update id="updateProductNumber" >
+        UPDATE hiolabs_cart SET number=#{number}+3 WHERE id=#{id}
+    </update>
+
+
+    <insert id="addCart" parameterType="com.shop.entity.Cart">
+        INSERT INTO hiolabs_cart
+        (user_id,goods_id,goods_sn,product_id,goods_name,goods_aka,goods_weight,add_price,
+        retail_price,number,goods_specifition_name_value,goods_specifition_ids,checked,list_pic_url,freight_template_id,
+        is_on_sale,add_time,is_fast,is_delete)
+        VALUES
+        (#{cart.user_id},#{cart.goods_id},#{cart.goods_sn},#{cart.product_id},#{cart.goods_name},#{cart.goods_aka},#{cart.goods_weight},#{cart.add_price},
+        #{cart.retail_price},#{cart.number},#{cart.goods_specifition_name_value},#{cart.goods_specifition_ids},#{cart.checked},#{cart.list_pic_url},#{cart.freight_template_id},
+        #{cart.is_on_sale},#{cart.add_time},#{cart.is_fast},#{cart.is_delete})
+    </insert>
 
 </mapper>

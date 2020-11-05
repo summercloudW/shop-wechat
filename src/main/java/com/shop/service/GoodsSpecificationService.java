@@ -8,4 +8,6 @@ public interface GoodsSpecificationService {
 
     public List<GoodsSpecification> getGoodsSpecificationByGid(Integer goodsSpecificationId);
 
+    public String getSpecificationValueById(Integer goodsSpecificationId);
+
 }

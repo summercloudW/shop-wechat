@@ -62,4 +62,9 @@ public class GoodsServiceImpl implements GoodsService {
         return detailVo;
     }
 
+    @Override
+    public Goods getGoodsById(Integer goods_id) {
+        return goodsMapper.getSpecificationGoods(goods_id);
+    }
+
 }

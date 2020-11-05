@@ -6,4 +6,8 @@
         SELECT * FROM hiolabs_product WHERE goods_id=#{goods_id} AND is_delete=0
     </select>
 
+    <select id="getProductById" parameterType="java.lang.Integer" resultType="com.shop.entity.Product">
+        SELECT * FROM hiolabs_product WHERE id=#{id}
+    </select>
+
 </mapper>

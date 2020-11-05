@@ -11,6 +11,7 @@ import com.shop.util.JwtUtil;
 import com.shop.util.MyBase64;
 import com.shop.vo.LoginVo;
 import com.shop.vo.UserInfoVo;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,7 @@ import java.util.Map;
 import java.util.UUID;
 
 @Service
+@Slf4j
 public class LoginServiceImpl implements LoginService {
 
     @Autowired
@@ -42,9 +44,11 @@ public class LoginServiceImpl implements LoginService {
 
         //根据openID查询数据库看是否有对应的用户
         User user = userService.getUserByOpenId(openid);
+        log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>" + user);
         loginVo.setIs_new(1);
         //如果为空则注册，将用户信息保存在数据库中
         if (user == null) {
+            log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>" + user);
             user = new User();
             user.setCity("");
             user.setCountry("中国");
@@ -55,8 +59,9 @@ public class LoginServiceImpl implements LoginService {
             user.setMobile("");
             user.setName_mobile(0);
             user.setName("微信用户" + UUID.randomUUID());
+            user.setUsername("姓名" + UUID.randomUUID());
             user.setPassword(openid);
-            user.setRegister_time((int) System.currentTimeMillis());
+            user.setRegister_time(0);
             user.setWeixin_openid(openid);
             loginVo.setIs_new(0);
             //插入数据库

@@ -1,14 +1,20 @@
 package com.shop.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.shop.entity.Cart;
+import com.shop.entity.User;
+import com.shop.request.AddCartReq;
 import com.shop.result.Result;
 import com.shop.service.CartService;
+import com.shop.util.JwtUtil;
+import com.shop.util.StringUtil;
+import com.shop.util.TokenUtil;
+import com.shop.vo.CartIndexVo;
 import com.shop.vo.CartTotal;
 import com.shop.vo.GoodsCountVo;
+import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -23,25 +29,59 @@ public class CartController {
 
     @GetMapping("/goodsCount")
     @ResponseBody
-    public Result<GoodsCountVo> getGoodsCount() {
+    public Result<GoodsCountVo> getGoodsCount(@RequestHeader("X-Nideshop-Token") String token) {
+        Claims claims = null;
+        try {
+            claims = JwtUtil.parseJWT(token);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        String userStr = claims.getSubject();
+        User user = JSON.parseObject(userStr, User.class);
+        int id = user.getId();
         CartTotal cartTotal = new CartTotal();
-        cartTotal.setGoodsCount(cartService.getGoodsCount());
+        cartTotal.setGoodsCount(cartService.getGoodsCount(id));
         GoodsCountVo goodsCountVo = new GoodsCountVo();
         goodsCountVo.setCartTotal(cartTotal);
         return Result.success(goodsCountVo);
     }
 
-//    @GetMapping("/index")
-//    @ResponseBody
-//    public Result<CartIndexVo> getIndex() {
-//        Cart cart = new Cart(14936, 0, 1064003, "1064003", 74, "六边形南瓜式宠物窝", "六边形南瓜式宠物窝", 1, BigDecimal.valueOf(89), BigDecimal.valueOf(89), 100, "蓝色", "51", 0, "http://yanxuan.nosdn.127.net/58ed94b63b39339e7814f1339013793c.png", 19, 1, 1603789966L, 0, 0, 100);
-//        IndexCartTotal indexCartTotal = new IndexCartTotal(101, "8905.00", 0, "0.00", 0, 0);
-//        CartIndexVo cartIndexVo = new CartIndexVo();
-//        List<Cart> cartList = new ArrayList<Cart>();
-//        cartList.add(cart);
-//        cartIndexVo.setCartTotal(indexCartTotal);
-//        cartIndexVo.setCartList(cartList);
-//        return Result.success(cartIndexVo);
-//    }
+    @GetMapping("/index")
+    @ResponseBody
+    public Result<CartIndexVo> getIndex(@RequestHeader("X-Nideshop-Token") String token) {
+        CartIndexVo cartIndexVo = new CartIndexVo();
+        if (StringUtil.isEmpty(token)) {
+            return Result.success(cartIndexVo);
+        }
+        try {
+            Claims claims = JwtUtil.parseJWT(token);
+            String userStr = claims.getSubject();
+            User user = JSON.parseObject(userStr, User.class);
+            int id = user.getId();
+            cartIndexVo = cartService.getIndex(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return Result.success(cartIndexVo);
+    }
+
+    @PostMapping("/add")
+    @ResponseBody
+    public Result<CartIndexVo> addCart(@RequestHeader("X-Nideshop-Token") String token, @RequestBody AddCartReq addCartReq) {
+        CartIndexVo cartIndexVo = new CartIndexVo();
+        if (StringUtil.isEmpty(token)) {
+            return Result.success(cartIndexVo);
+        }
+        try {
+            Claims claims = JwtUtil.parseJWT(token);
+            String userStr = claims.getSubject();
+            User user = JSON.parseObject(userStr, User.class);
+            int id = user.getId();
+            cartIndexVo = cartService.addCart(addCartReq, id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return Result.success(cartIndexVo);
+    }
 
 }

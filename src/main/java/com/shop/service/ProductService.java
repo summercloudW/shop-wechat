@@ -8,4 +8,6 @@ public interface ProductService {
 
     public List<Product> getProductListByGid(Integer goods_id);
 
+    public Product getProductById(Integer id);
+
 }

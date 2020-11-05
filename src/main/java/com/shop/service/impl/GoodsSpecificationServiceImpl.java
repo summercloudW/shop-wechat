@@ -19,4 +19,9 @@ public class GoodsSpecificationServiceImpl implements GoodsSpecificationService 
         return goodsSpecificationMapper.getGoodsSpecificationByGid(goodsSpecificationId);
     }
 
+    @Override
+    public String getSpecificationValueById(Integer goodsSpecificationId) {
+        return goodsSpecificationMapper.getSpecificationValueById(goodsSpecificationId);
+    }
+
 }
