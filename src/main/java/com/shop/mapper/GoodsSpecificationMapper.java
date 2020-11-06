@@ -9,7 +9,7 @@ import java.util.List;
 @Mapper
 public interface GoodsSpecificationMapper {
 
-    public List<GoodsSpecification> getGoodsSpecificationByGid(Integer goodsSpecificationId);
+    public GoodsSpecification getGoodsSpecificationByPid(Integer goodsSpecificationId);
 
     public String getSpecificationValueById(Integer goodsSpecificationId);
 

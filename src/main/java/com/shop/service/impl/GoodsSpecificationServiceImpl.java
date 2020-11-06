@@ -15,8 +15,8 @@ public class GoodsSpecificationServiceImpl implements GoodsSpecificationService 
     private GoodsSpecificationMapper goodsSpecificationMapper;
 
     @Override
-    public List<GoodsSpecification> getGoodsSpecificationByGid(Integer goodsSpecificationId) {
-        return goodsSpecificationMapper.getGoodsSpecificationByGid(goodsSpecificationId);
+    public GoodsSpecification getGoodsSpecificationByPid(Integer goodsSpecificationId) {
+        return goodsSpecificationMapper.getGoodsSpecificationByPid(goodsSpecificationId);
     }
 
     @Override
