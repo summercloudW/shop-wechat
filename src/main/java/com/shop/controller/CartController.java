@@ -4,6 +4,8 @@ import com.alibaba.fastjson.JSON;
 import com.shop.entity.Cart;
 import com.shop.entity.User;
 import com.shop.request.AddCartReq;
+import com.shop.request.CartCheckReq;
+import com.shop.request.CartUpdateReq;
 import com.shop.result.Result;
 import com.shop.service.CartService;
 import com.shop.util.JwtUtil;
@@ -30,6 +32,13 @@ public class CartController {
     @GetMapping("/goodsCount")
     @ResponseBody
     public Result<GoodsCountVo> getGoodsCount(@RequestHeader("X-Nideshop-Token") String token) {
+        GoodsCountVo goodsCountVo = new GoodsCountVo();
+        CartTotal cartTotal = new CartTotal();
+        if (StringUtil.isEmpty(token)) {
+            cartTotal.setGoodsCount(0);
+            goodsCountVo.setCartTotal(cartTotal);
+            return Result.success(goodsCountVo);
+        }
         Claims claims = null;
         try {
             claims = JwtUtil.parseJWT(token);
@@ -39,9 +48,7 @@ public class CartController {
         String userStr = claims.getSubject();
         User user = JSON.parseObject(userStr, User.class);
         int id = user.getId();
-        CartTotal cartTotal = new CartTotal();
         cartTotal.setGoodsCount(cartService.getGoodsCount(id));
-        GoodsCountVo goodsCountVo = new GoodsCountVo();
         goodsCountVo.setCartTotal(cartTotal);
         return Result.success(goodsCountVo);
     }
@@ -81,6 +88,39 @@ public class CartController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return Result.success(cartIndexVo);
+    }
+
+
+    @PostMapping("/update")
+    @ResponseBody
+    public Result<CartIndexVo> updateCart(@RequestBody CartUpdateReq cartUpdateReq, @RequestHeader("X-Nideshop-Token") String token) {
+        Claims claims = null;
+        try {
+            claims = JwtUtil.parseJWT(token);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        String userStr = claims.getSubject();
+        User user = JSON.parseObject(userStr, User.class);
+        int uid = user.getId();
+        CartIndexVo cartIndexVo = cartService.updateCart(cartUpdateReq.getId(), cartUpdateReq.getNumber(), uid);
+        return Result.success(cartIndexVo);
+    }
+
+    @PostMapping("/checked")
+    @ResponseBody
+    public Result<CartIndexVo> updateIsCheck(@RequestBody CartCheckReq cartCheckReq, @RequestHeader("X-Nideshop-Token") String token) {
+        Claims claims = null;
+        try {
+            claims = JwtUtil.parseJWT(token);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        String userStr = claims.getSubject();
+        User user = JSON.parseObject(userStr, User.class);
+        int uid = user.getId();
+        CartIndexVo cartIndexVo = cartService.updateIsCheck(cartCheckReq.getIsChecked(), cartCheckReq.getProductIds(), uid);
         return Result.success(cartIndexVo);
     }
 

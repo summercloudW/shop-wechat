@@ -16,13 +16,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
 import java.math.BigDecimal;
 import java.util.List;
 
 @Service
 public class CartServiceImpl implements CartService {
 
-    @Autowired
+    @Resource
     private CartMapper cartMapper;
     @Autowired
     private ProductService productService;
@@ -38,6 +39,7 @@ public class CartServiceImpl implements CartService {
 
     /**
      * 获取购物车首页信息
+     *
      * @param id
      * @return
      */
@@ -47,7 +49,7 @@ public class CartServiceImpl implements CartService {
         CartIndexVo cartIndexVo = new CartIndexVo();
         List<Cart> cartList = cartMapper.getCartList(id);
 
-        int goodsCount=0;
+        int goodsCount = 0;
         BigDecimal amount = new BigDecimal("0");
         for (Cart cart : cartList) {
             BigDecimal goods_amount = cart.getRetail_price();
@@ -117,5 +119,18 @@ public class CartServiceImpl implements CartService {
         return index;
     }
 
+    @Override
+    public CartIndexVo updateCart(Integer id, Integer number, Integer userId) {
+        cartMapper.updateCart(id, number);
+        CartIndexVo index = getIndex(userId);
+        return index;
+    }
+
+    @Override
+    public CartIndexVo updateIsCheck(Integer ischeck, Integer productid, Integer userId) {
+        cartMapper.updateIsCheck(ischeck, productid, userId);
+        CartIndexVo index = getIndex(userId);
+        return index;
+    }
 
 }

@@ -20,4 +20,8 @@ public interface CartMapper {
 
     public void addCart(@Param("cart") Cart cart);
 
+    public void updateCart(@Param("id") Integer id, @Param("number") Integer number);
+
+    public void updateIsCheck(@Param("ischeck") Integer ischeck, @Param("productid") Integer productid, @Param("userId")Integer userId);
+
 }

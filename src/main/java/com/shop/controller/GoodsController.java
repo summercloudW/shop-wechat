@@ -19,16 +19,7 @@ public class GoodsController {
     private GoodsService goodsService;
 
     @GetMapping("/count")
-    public Result<IndexGoodsCount> getGoodsCount(@RequestHeader("X-Nideshop-Token") String token) {
-        Claims claims = null;
-        try {
-            claims = JwtUtil.parseJWT(token);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        String userStr = claims.getSubject();
-        User user = JSON.parseObject(userStr, User.class);
-        int id = user.getId();
+    public Result<IndexGoodsCount> getGoodsCount() {
         IndexGoodsCount indexGoodsCount = new IndexGoodsCount();
         indexGoodsCount.setGoodsCount(goodsService.getGoodsCount());
         return Result.success(indexGoodsCount);

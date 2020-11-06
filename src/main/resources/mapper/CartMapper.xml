@@ -33,4 +33,12 @@
         #{cart.is_on_sale},#{cart.add_time},#{cart.is_fast},#{cart.is_delete})
     </insert>
 
+    <update id="updateCart" >
+        UPDATE hiolabs_cart SET number=#{number} WHERE id=#{id}
+    </update>
+
+    <update id="updateIsCheck" >
+        UPDATE hiolabs_cart SET checked=#{ischeck} WHERE user_id=#{userId} AND product_id=#{productid} AND is_delete=0
+    </update>
+
 </mapper>
