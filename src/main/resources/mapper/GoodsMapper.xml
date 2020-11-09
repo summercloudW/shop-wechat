@@ -24,4 +24,6 @@
         SELECT * FROM hiolabs_goods WHERE id=#{id}
     </select>
 
+
+
 </mapper>

@@ -9,8 +9,8 @@
         WHERE hiolabs_cart.user_id=#{uid} AND is_delete=0
     </select>
 
-    <select id="getCartList" parameterType="java.lang.Integer" resultType="com.shop.entity.Cart">
-        SELECT * FROM hiolabs_cart WHERE user_id=#{user_id} AND is_delete=0
+    <select id="getCartList" parameterType="com.shop.bo.IndexCartSearch" resultType="com.shop.entity.Cart">
+        SELECT * FROM hiolabs_cart WHERE user_id=#{indexCartSearch.uid} AND is_fast=#{indexCartSearch.isFast} AND is_delete=0
     </select>
 
     <select id="getCartByUidAndPid" resultType="java.lang.Integer">
@@ -39,6 +39,10 @@
 
     <update id="updateIsCheck" >
         UPDATE hiolabs_cart SET checked=#{ischeck} WHERE user_id=#{userId} AND product_id=#{productid} AND is_delete=0
+    </update>
+
+    <update id="updateFastCheck" >
+        UPDATE hiolabs_cart SET is_delete=1 WHERE user_id=#{userId} AND goods_id=#{goodsId} AND is_fast=1
     </update>
 
 </mapper>

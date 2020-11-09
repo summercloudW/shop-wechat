@@ -1,6 +1,7 @@
 package com.shop.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.shop.bo.JwtUser;
 import com.shop.entity.User;
 import com.shop.result.Result;
 import com.shop.service.OrderService;
@@ -32,7 +33,7 @@ public class OrderController {
             Claims claims = JwtUtil.parseJWT(token);
             String userStr = claims.getSubject();
             log.info(">>>>>>>>>>>>>>>>>>>>>>" + userStr);
-            User user = JSON.parseObject(userStr, User.class);
+            JwtUser user = JSON.parseObject(userStr, JwtUser.class);
             int id = user.getId();
             log.info("**************************" + id);
             orderCount = orderService.getOrderCount(id);

@@ -1,6 +1,7 @@
 package com.shop.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.shop.bo.JwtUser;
 import com.shop.entity.User;
 import com.shop.handler.LoginHandler;
 import com.shop.request.AuthInfoReq;
@@ -48,7 +49,6 @@ public class LoginServiceImpl implements LoginService {
         loginVo.setIs_new(1);
         //如果为空则注册，将用户信息保存在数据库中
         if (user == null) {
-            log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>" + user);
             user = new User();
             user.setCity("");
             user.setCountry("中国");
@@ -68,18 +68,25 @@ public class LoginServiceImpl implements LoginService {
             userService.register(user);
         }
 
+        //获取数据库中的userid
+        user = userService.getUserByOpenId(openid);
+        log.info(">>>>>>>>>>>>>>>>uid=" + user.getId());
+        JwtUser jwtUser = new JwtUser();
+        jwtUser.setId(user.getId());
+        jwtUser.setAvatar(user.getAvatar());
+        jwtUser.setName(user.getName());
+
+        //利用jwt生成token
+        String token = JwtUtil.createToken(UUID.randomUUID().toString(), JSON.toJSONString(jwtUser));
+
         //将数据传给vo
         userInfoVo.setId(user.getId());
         userInfoVo.setAvatar(user.getAvatar());
         userInfoVo.setGender(user.getGender());
         userInfoVo.setUsername(user.getUsername());
         userInfoVo.setNickname(user.getNickName());
-
-        //利用jwt生成token
-        String token = JwtUtil.createToken(UUID.randomUUID().toString(), JSON.toJSONString(user));
-        loginVo.setToken(token);
-
         loginVo.setUserInfo(userInfoVo);
+        loginVo.setToken(token);
         return loginVo;
 
     }

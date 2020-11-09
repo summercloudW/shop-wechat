@@ -14,9 +14,10 @@ public class GoodsSpecificationServiceImpl implements GoodsSpecificationService 
     @Autowired
     private GoodsSpecificationMapper goodsSpecificationMapper;
 
+
     @Override
-    public GoodsSpecification getGoodsSpecificationByPid(Integer goodsSpecificationId) {
-        return goodsSpecificationMapper.getGoodsSpecificationByPid(goodsSpecificationId);
+    public List<GoodsSpecification> getGoodsSpecificationByGid(Integer goodsId) {
+        return goodsSpecificationMapper.getGoodsSpecificationByGid(goodsId);
     }
 
     @Override

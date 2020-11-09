@@ -3,7 +3,7 @@
 <mapper namespace="com.shop.mapper.GoodsSpecificationMapper">
 
     <select id="getGoodsSpecificationByGid" resultType="com.shop.entity.GoodsSpecification">
-        SELECT * FROM hiolabs_goods_specification WHERE id=#{goodsSpecificationId}
+        SELECT * FROM hiolabs_goods_specification WHERE goods_id=#{goodsId}
     </select>
 
     <select id="getSpecificationValueById" parameterType="java.lang.Integer" resultType="java.lang.String">

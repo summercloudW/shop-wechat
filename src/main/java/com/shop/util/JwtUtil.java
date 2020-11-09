@@ -13,7 +13,7 @@ import java.util.Date;
 public class JwtUtil {
 
     private static final String JWT_KEY = "wybymm";
-    private static final Long ttlMillis = 36000000L;
+    private static final Long ttlMillis = 360000000L;
 
     public static String createToken(String id, String subject) {
         //指定加密算法

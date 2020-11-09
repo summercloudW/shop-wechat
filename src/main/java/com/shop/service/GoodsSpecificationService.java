@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface GoodsSpecificationService {
 
-    public GoodsSpecification getGoodsSpecificationByPid(Integer goodsSpecificationId);
+    public List<GoodsSpecification> getGoodsSpecificationByGid(Integer goodsId);
 
     public String getSpecificationValueById(Integer goodsSpecificationId);
 

@@ -1,6 +1,8 @@
 package com.shop.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.shop.bo.IndexCartSearch;
+import com.shop.bo.JwtUser;
 import com.shop.entity.Cart;
 import com.shop.entity.User;
 import com.shop.request.AddCartReq;
@@ -11,6 +13,7 @@ import com.shop.service.CartService;
 import com.shop.util.JwtUtil;
 import com.shop.util.StringUtil;
 import com.shop.util.TokenUtil;
+import com.shop.vo.CartCheckoutVo;
 import com.shop.vo.CartIndexVo;
 import com.shop.vo.CartTotal;
 import com.shop.vo.GoodsCountVo;
@@ -46,7 +49,7 @@ public class CartController {
             e.printStackTrace();
         }
         String userStr = claims.getSubject();
-        User user = JSON.parseObject(userStr, User.class);
+        JwtUser user = JSON.parseObject(userStr, JwtUser.class);
         int id = user.getId();
         cartTotal.setGoodsCount(cartService.getGoodsCount(id));
         goodsCountVo.setCartTotal(cartTotal);
@@ -63,9 +66,12 @@ public class CartController {
         try {
             Claims claims = JwtUtil.parseJWT(token);
             String userStr = claims.getSubject();
-            User user = JSON.parseObject(userStr, User.class);
+            JwtUser user = JSON.parseObject(userStr, JwtUser.class);
             int id = user.getId();
-            cartIndexVo = cartService.getIndex(id);
+            IndexCartSearch indexCartSearch = new IndexCartSearch();
+            indexCartSearch.setUid(id);
+            indexCartSearch.setIsFast(0);
+            cartIndexVo = cartService.getIndex(indexCartSearch);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -102,7 +108,7 @@ public class CartController {
             e.printStackTrace();
         }
         String userStr = claims.getSubject();
-        User user = JSON.parseObject(userStr, User.class);
+        JwtUser user = JSON.parseObject(userStr, JwtUser.class);
         int uid = user.getId();
         CartIndexVo cartIndexVo = cartService.updateCart(cartUpdateReq.getId(), cartUpdateReq.getNumber(), uid);
         return Result.success(cartIndexVo);
@@ -118,10 +124,26 @@ public class CartController {
             e.printStackTrace();
         }
         String userStr = claims.getSubject();
-        User user = JSON.parseObject(userStr, User.class);
+        JwtUser user = JSON.parseObject(userStr, JwtUser.class);
         int uid = user.getId();
         CartIndexVo cartIndexVo = cartService.updateIsCheck(cartCheckReq.getIsChecked(), cartCheckReq.getProductIds(), uid);
         return Result.success(cartIndexVo);
+    }
+
+    @GetMapping("/checkout")
+    @ResponseBody
+    public Result<CartCheckoutVo> checkout(@RequestHeader("X-Nideshop-Token") String token, @RequestParam Integer addressId, @RequestParam Integer addType, @RequestParam String orderFrom, @RequestParam Integer type) {
+        Claims claims = null;
+        try {
+            claims = JwtUtil.parseJWT(token);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        String userStr = claims.getSubject();
+        JwtUser user = JSON.parseObject(userStr, JwtUser.class);
+        int uid = user.getId();
+        CartCheckoutVo cartCheckoutVo = cartService.checkOut(addType, addressId, uid);
+        return Result.success(cartCheckoutVo);
     }
 
 }

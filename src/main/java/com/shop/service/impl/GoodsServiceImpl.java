@@ -45,15 +45,10 @@ public class GoodsServiceImpl implements GoodsService {
         //根据商品的id得到产品的集合（product是goods的具体的一个产品）
         List<Product> productList = productService.getProductListByGid(goods_id);
 
-        //根据product的id获得goodsSpecification对象集合(goodsSpecification是产品的一些规格信息)
-        List<GoodsSpecification> goodsSpecifications = new ArrayList<>();
-        for (Product product : productList) {
-            String goods_specification_ids = product.getGoods_specification_ids();
-            int specification_ids = Integer.parseInt(goods_specification_ids);
-            goodsSpecifications.add(goodsSpecificationService.getGoodsSpecificationByPid(specification_ids));
-        }
+        //根据goods的id获得goodsSpecification对象集合(goodsSpecification是产品的一些规格信息)
+        List<GoodsSpecification> goodsSpecifications = goodsSpecificationService.getGoodsSpecificationByGid(goods_id);
 
-        //通过product的goodsSpecification信息id来获取规格信息
+        //通过goodsSpecification信息id来获取规格信息
         int specification_id = goodsSpecifications.get(0).getSpecification_id();
         Specification specification = specificationService.getSpecification(specification_id);
         SpecificationList specificationList = new SpecificationList();

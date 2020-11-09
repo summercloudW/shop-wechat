@@ -1,5 +1,6 @@
 package com.shop.service.impl;
 
+import com.shop.bo.IndexCartSearch;
 import com.shop.bo.IndexCartTotal;
 import com.shop.entity.Cart;
 import com.shop.entity.Goods;
@@ -10,6 +11,7 @@ import com.shop.service.CartService;
 import com.shop.service.GoodsService;
 import com.shop.service.GoodsSpecificationService;
 import com.shop.service.ProductService;
+import com.shop.vo.CartCheckoutVo;
 import com.shop.vo.CartIndexVo;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,20 +36,25 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public Integer getGoodsCount(Integer uid) {
+        if (cartMapper.getGoodsCount(uid) == null) {
+            return 0;
+        }
         return cartMapper.getGoodsCount(uid);
     }
 
     /**
      * 获取购物车首页信息
      *
-     * @param id
+     * @param indexCartSearch
      * @return
      */
     @Override
-    public CartIndexVo getIndex(Integer id) {
+    public CartIndexVo getIndex(IndexCartSearch indexCartSearch) {
 
         CartIndexVo cartIndexVo = new CartIndexVo();
-        List<Cart> cartList = cartMapper.getCartList(id);
+
+        //根据用户id直接查询购物车的商品信息，满足的条件为is_fast=0,is_delete=0
+        List<Cart> cartList = cartMapper.getCartList(indexCartSearch);
 
         int goodsCount = 0;
         BigDecimal amount = new BigDecimal("0");
@@ -61,7 +68,7 @@ public class CartServiceImpl implements CartService {
         }
 
         IndexCartTotal indexCartTotal = new IndexCartTotal();
-        indexCartTotal.setUser_id(id);
+        indexCartTotal.setUser_id(indexCartSearch.getUid());
         indexCartTotal.setGoodsCount(goodsCount);
         indexCartTotal.setGoodsAmount(String.valueOf(amount));
         indexCartTotal.setCheckedGoodsAmount(String.valueOf(amount));
@@ -104,7 +111,7 @@ public class CartServiceImpl implements CartService {
             cart.setGoods_specifition_name_value(value);
             cart.setGoods_weight(product.getGoods_weight());
             cart.setIs_delete(product.getIs_delete());
-            cart.setIs_fast(0);
+            cart.setIs_fast(addCartReq.getAddType());
             cart.setIs_on_sale(goods.getIs_on_sale());
             cart.setList_pic_url(goods.getList_pic_url());
             cart.setNumber(number);
@@ -115,22 +122,64 @@ public class CartServiceImpl implements CartService {
         }
 
         //展示购物车信息
-        CartIndexVo index = getIndex(userId);
+        IndexCartSearch indexCartSearch = new IndexCartSearch();
+        indexCartSearch.setUid(userId);
+        indexCartSearch.setIsFast(addCartReq.getAddType());
+        CartIndexVo index = getIndex(indexCartSearch);
         return index;
     }
 
     @Override
     public CartIndexVo updateCart(Integer id, Integer number, Integer userId) {
         cartMapper.updateCart(id, number);
-        CartIndexVo index = getIndex(userId);
+        IndexCartSearch indexCartSearch = new IndexCartSearch();
+        indexCartSearch.setUid(userId);
+        indexCartSearch.setIsFast(0);
+        CartIndexVo index = getIndex(indexCartSearch);
         return index;
     }
 
     @Override
     public CartIndexVo updateIsCheck(Integer ischeck, Integer productid, Integer userId) {
         cartMapper.updateIsCheck(ischeck, productid, userId);
-        CartIndexVo index = getIndex(userId);
+        IndexCartSearch indexCartSearch = new IndexCartSearch();
+        indexCartSearch.setUid(userId);
+        indexCartSearch.setIsFast(0);
+        CartIndexVo index = getIndex(indexCartSearch);
         return index;
+    }
+
+
+    @Override
+    public CartCheckoutVo checkOut(Integer addType,Integer addressId, Integer uid) {
+        //查询购买后的信息
+        IndexCartSearch indexCartSearch = new IndexCartSearch();
+        indexCartSearch.setUid(uid);
+        indexCartSearch.setIsFast(addType);
+        CartIndexVo index = getIndex(indexCartSearch);
+
+        CartCheckoutVo cartCheckoutVo = new CartCheckoutVo();
+        //根据地址的ID查询地址信息
+        if (addressId == 0) {
+            cartCheckoutVo.setCheckedAddress(0);
+            cartCheckoutVo.setFreightPrice(new BigDecimal("0"));
+        } else {
+            //TODO 查询地址信息
+        }
+
+        cartCheckoutVo.setGoodsCount(index.getCartTotal().getGoodsCount());
+        cartCheckoutVo.setOrderTotalPrice(index.getCartTotal().getCheckedGoodsAmount());
+        cartCheckoutVo.setActualPrice(index.getCartTotal().getCheckedGoodsAmount());
+        cartCheckoutVo.setGoodsTotalPrice(index.getCartTotal().getCheckedGoodsAmount());
+        cartCheckoutVo.setCheckedGoodsList(index.getCartList());
+        cartCheckoutVo.setNumberChange(0);
+        cartCheckoutVo.setOutStock(0);
+        return cartCheckoutVo;
+    }
+
+    @Override
+    public void updateFastCheck(Integer userId, Integer goodsId) {
+        cartMapper.updateFastCheck(userId, goodsId);
     }
 
 }
