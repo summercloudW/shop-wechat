@@ -13,7 +13,7 @@
     <insert id="saveAddress" parameterType="com.shop.entity.Address">
         INSERT INTO hiolabs_address
         (name,user_id,country_id,province_id,city_id,district_id,address,is_default,is_delete)
-        VALUES (#{address.name},#{user_id},#{country_id},#{province_id},#{city_id},#{district_id},#{address},#{is_default},#{is_delete})
+        VALUES (#{address.name},#{address.user_id},#{address.country_id},#{address.province_id},#{address.city_id},#{address.district_id},#{address.address},#{address.is_default},#{address.is_delete})
     </insert>
 
     <select id="queryRecentId" resultType="java.lang.Integer">

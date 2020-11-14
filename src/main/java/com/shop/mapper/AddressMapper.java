@@ -2,6 +2,7 @@ package com.shop.mapper;
 
 import com.shop.entity.Address;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ public interface AddressMapper {
 
     public Address findAddressById(Integer id);
 
-    public void saveAddress(Address address);
+    public void saveAddress(@Param("address") Address address);
 
     public Integer queryRecentId();
 

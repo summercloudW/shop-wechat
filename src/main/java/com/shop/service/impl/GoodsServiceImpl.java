@@ -10,6 +10,7 @@ import com.shop.service.*;
 import com.shop.vo.DetailVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +40,7 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
+    @Transactional
     public DetailVo getDetailInfo(Integer goods_id) {
         DetailVo detailVo = new DetailVo();
 
@@ -62,6 +64,7 @@ public class GoodsServiceImpl implements GoodsService {
         detailVo.setProductList(productList);
         detailVo.setSpecificationList(specificationList);
         return detailVo;
+
     }
 
     @Override

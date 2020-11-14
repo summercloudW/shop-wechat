@@ -2,7 +2,9 @@ package com.shop.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.shop.bo.JwtUser;
+import com.shop.entity.Order;
 import com.shop.entity.User;
+import com.shop.request.AddressInfoReq;
 import com.shop.result.Result;
 import com.shop.service.OrderService;
 import com.shop.util.JwtUtil;
@@ -41,6 +43,12 @@ public class OrderController {
             e.printStackTrace();
         }
         return Result.success(orderCount);
+    }
+
+    @PostMapping("/submit")
+    @ResponseBody
+    public Result<Order> submit(@RequestBody AddressInfoReq addressInfoReq) {
+        return null;
     }
 
 }

@@ -81,7 +81,7 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public CartIndexVo addCart(AddCartReq addCartReq, Integer userId) {
         int productId = addCartReq.getProductId();
         String goodsId = addCartReq.getGoodsId();

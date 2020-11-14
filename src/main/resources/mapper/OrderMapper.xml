@@ -14,4 +14,9 @@
         SELECT COUNT(id) FROM hiolabs_order WHERE user_id=1048 AND order_status=301
     </select>
 
+    <insert id="insertOrder">
+        INSERT INTO hiolabs_order (order_sn,user_id,order_status,offline_pay,shipping_status,print_status,pay_status,consignee,country,province,city,district,address,print_info,mobile,postscript,admin_memo,shipping_fee,pay_name,pay_id)
+        values (#{order.order_sn},#{order.user_id},#{order.order_status},#{order.offline_pay},#{order.shipping_status},#{order.print_status},#{order.pay_status},#{order.consignee},#{order.country},#{order.province,city},#{order.district},#{order.address},#{order.print_info},mobile,#{order.postscript},#{order.admin_memo},#{order.shipping_fee,pay_name},#{order.pay_id})
+    </insert>
+
 </mapper>

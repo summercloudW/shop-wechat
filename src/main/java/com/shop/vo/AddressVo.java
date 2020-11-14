@@ -1,4 +1,4 @@
-package com.shop.entity;
+package com.shop.vo;
 
 import com.shop.mapper.RegionMapper;
 import lombok.Data;
@@ -9,8 +9,9 @@ import org.springframework.stereotype.Component;
  * @author : WangYB
  * @time: 2020/11/7  15:32
  */
+
 @Data
-public class Address {
+public class AddressVo {
 
     private Integer id;
     private String name;
@@ -23,6 +24,11 @@ public class Address {
     private String mobile;
     private Integer is_default;
     private Integer is_delete;
+    private String province_name;
+    private String city_name;
+    private String district_name;
+    private String full_region;
+
 
 
 }

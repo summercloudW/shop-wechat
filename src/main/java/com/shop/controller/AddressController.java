@@ -2,10 +2,12 @@ package com.shop.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.shop.entity.Address;
+import com.shop.entity.Admin;
 import com.shop.entity.User;
 import com.shop.result.Result;
 import com.shop.service.AddressService;
 import com.shop.util.JwtUtil;
+import com.shop.vo.AddressVo;
 import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -25,8 +27,8 @@ public class AddressController {
 
     @GetMapping("/getAddresses")
     @ResponseBody
-    public Result<List<Address>> getAddresses(@RequestHeader("X-Nideshop-Token") String token) {
-        List<Address> addresses = null;
+    public Result<List<AddressVo>> getAddresses(@RequestHeader("X-Nideshop-Token") String token) {
+        List<AddressVo> addresses = null;
         try {
             Claims claims = JwtUtil.parseJWT(token);
             String userStr = claims.getSubject();
@@ -42,7 +44,11 @@ public class AddressController {
     @GetMapping("/addressDetail")
     @ResponseBody
     public Result<Address> getDetailAddress(@RequestParam Integer id) {
-        Address address = addressService.findAddressById(id);
+        Address address = new Address();
+        if (id == 0) {
+            return Result.success(address);
+        }
+        address = addressService.findAddressById(id);
         return Result.success(address);
     }
 

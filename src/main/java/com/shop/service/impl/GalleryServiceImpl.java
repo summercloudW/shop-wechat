@@ -20,5 +20,4 @@ public class GalleryServiceImpl implements GalleryService {
         return specificationGallery;
     }
 
-
 }
