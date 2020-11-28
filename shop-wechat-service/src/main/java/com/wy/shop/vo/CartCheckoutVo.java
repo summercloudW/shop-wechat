@@ -1,6 +1,8 @@
-package com.shop.vo;
+package com.wy.shop.vo;
 
-import com.shop.entity.Cart;
+import com.wy.shop.entity.Address;
+import com.wy.shop.entity.Cart;
+import com.wy.shop.entity.ExtAddress;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -14,7 +16,7 @@ import java.util.List;
 @Data
 public class CartCheckoutVo {
     
-    private Integer checkedAddress;
+    private ExtAddress checkedAddress;
     private BigDecimal freightPrice;
     private List<Cart> checkedGoodsList;
     private String goodsTotalPrice;

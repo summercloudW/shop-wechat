@@ -1,8 +1,8 @@
-package com.shop.service.impl;
+package com.wy.shop.service.impl;
 
-import com.shop.entity.Banner;
-import com.shop.mapper.BannerMapper;
-import com.shop.service.BannerService;
+import com.wy.shop.entity.Banner;
+import com.wy.shop.mapper.BannerMapper;
+import com.wy.shop.service.BannerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

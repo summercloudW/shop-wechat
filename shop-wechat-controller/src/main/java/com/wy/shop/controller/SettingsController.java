@@ -1,10 +1,9 @@
-package com.shop.controller;
+package com.wy.shop.controller;
 
-import com.shop.entity.ShowSettings;
-import com.shop.result.Result;
-import com.shop.service.SettingsService;
+import com.wy.shop.entity.ShowSettings;
+import com.wy.shop.result.Result;
+import com.wy.shop.service.SettingsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;

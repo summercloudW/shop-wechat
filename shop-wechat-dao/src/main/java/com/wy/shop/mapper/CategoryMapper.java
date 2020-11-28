@@ -1,22 +1,20 @@
-package com.shop.mapper;
+package com.wy.shop.mapper;
 
-import com.shop.entity.CatalogCategory;
-import com.shop.entity.Category;
+import com.wy.shop.entity.CatalogCategory;
+import com.wy.shop.entity.Category;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 @Mapper
 public interface CategoryMapper {
 
-//    @Select("SELECT * FROM hiolabs_category WHERE is_channel=1")
     public List<Category> getChannelCategory();
 
-//    @Select("SELECT * FROM hiolabs_category WHERE is_category=1")
     public List<Category> getListCategory();
 
-//    @Select("SELECT id,name,img_url,p_height FROM hiolabs_category WHERE id=#{id} AND is_category=1")
     public CatalogCategory getCatalogCategory(Integer id);
 
 }

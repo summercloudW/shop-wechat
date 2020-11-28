@@ -1,8 +1,8 @@
-package com.shop.service.impl;
+package com.wy.shop.service.impl;
 
-import com.shop.entity.Specification;
-import com.shop.mapper.SpecificationMapper;
-import com.shop.service.SpecificationService;
+import com.wy.shop.entity.Specification;
+import com.wy.shop.mapper.SpecificationMapper;
+import com.wy.shop.service.SpecificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,11 +1,10 @@
-package com.shop.service.impl;
+package com.wy.shop.service.impl;
 
-import com.shop.entity.Address;
-import com.shop.mapper.AddressMapper;
-import com.shop.mapper.RegionMapper;
-import com.shop.service.AddressService;
-import com.shop.service.RegionService;
-import com.shop.vo.AddressVo;
+import com.wy.shop.entity.Address;
+import com.wy.shop.mapper.AddressMapper;
+import com.wy.shop.mapper.RegionMapper;
+import com.wy.shop.service.AddressService;
+import com.wy.shop.vo.AddressVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,9 +1,8 @@
-package com.shop.controller;
+package com.wy.shop.controller;
 
-import com.shop.entity.Address;
-import com.shop.entity.Region;
-import com.shop.result.Result;
-import com.shop.service.RegionService;
+import com.wy.shop.entity.Region;
+import com.wy.shop.result.Result;
+import com.wy.shop.service.RegionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

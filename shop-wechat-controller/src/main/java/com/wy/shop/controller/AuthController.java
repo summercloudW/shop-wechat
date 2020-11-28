@@ -1,20 +1,12 @@
-package com.shop.controller;
+package com.wy.shop.controller;
 
-import com.shop.entity.User;
-import com.shop.handler.LoginHandler;
-import com.shop.request.AuthInfoReq;
-import com.shop.result.Result;
-import com.shop.service.LoginService;
-import com.shop.util.MyBase64;
-import com.shop.vo.IndexInfoVo;
-import com.shop.vo.LoginVo;
-import com.shop.vo.UserInfoVo;
+import com.wy.shop.request.AuthInfoReq;
+import com.wy.shop.result.Result;
+import com.wy.shop.service.LoginService;
+import com.wy.shop.vo.LoginVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Map;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/auth")
@@ -23,8 +15,8 @@ public class AuthController {
 
     @Autowired
     private LoginService loginService;
-    @Autowired
-    private LoginHandler loginHandler;
+//    @Autowired
+//    private LoginHandler loginHandler;
 
     @PostMapping("/loginByWeixin")
     @ResponseBody

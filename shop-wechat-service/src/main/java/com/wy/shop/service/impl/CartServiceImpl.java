@@ -1,19 +1,18 @@
-package com.shop.service.impl;
+package com.wy.shop.service.impl;
 
-import com.shop.bo.IndexCartSearch;
-import com.shop.bo.IndexCartTotal;
-import com.shop.entity.Cart;
-import com.shop.entity.Goods;
-import com.shop.entity.Product;
-import com.shop.mapper.CartMapper;
-import com.shop.request.AddCartReq;
-import com.shop.service.CartService;
-import com.shop.service.GoodsService;
-import com.shop.service.GoodsSpecificationService;
-import com.shop.service.ProductService;
-import com.shop.vo.CartCheckoutVo;
-import com.shop.vo.CartIndexVo;
-import org.apache.ibatis.annotations.Param;
+import com.wy.shop.entity.*;
+import com.wy.shop.mapper.AddressMapper;
+import com.wy.shop.mapper.CartMapper;
+import com.wy.shop.mapper.FreightMapper;
+import com.wy.shop.request.AddCartReq;
+import com.wy.shop.service.CartService;
+import com.wy.shop.service.GoodsService;
+import com.wy.shop.service.GoodsSpecificationService;
+import com.wy.shop.service.ProductService;
+import com.wy.shop.vo.CartCheckoutVo;
+import com.wy.shop.vo.CartIndexVo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,9 +20,12 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CartServiceImpl implements CartService {
+
+    public static final Logger log = LoggerFactory.getLogger(CartServiceImpl.class);
 
     @Resource
     private CartMapper cartMapper;
@@ -33,6 +35,10 @@ public class CartServiceImpl implements CartService {
     private GoodsService goodsService;
     @Autowired
     private GoodsSpecificationService goodsSpecificationService;
+    @Resource
+    private AddressMapper addressMapper;
+    @Autowired
+    private FreightMapper freightMapper;
 
     @Override
     public Integer getGoodsCount(Integer uid) {
@@ -151,25 +157,40 @@ public class CartServiceImpl implements CartService {
 
 
     @Override
-    public CartCheckoutVo checkOut(Integer addType,Integer addressId, Integer uid) {
+    public CartCheckoutVo checkOut(Integer addType, Integer addressId, Integer uid) {
         //查询购买后的信息
         IndexCartSearch indexCartSearch = new IndexCartSearch();
         indexCartSearch.setUid(uid);
         indexCartSearch.setIsFast(addType);
         CartIndexVo index = getIndex(indexCartSearch);
 
+        List<Cart> cartList = index.getCartList();
+        List<Integer> templateIdList = cartList.stream().map(cart ->
+                cart.getFreight_template_id()).collect(Collectors.toList());
+
         CartCheckoutVo cartCheckoutVo = new CartCheckoutVo();
+        List<FreightPrice> freightPriceList = null;
         //根据地址的ID查询地址信息
         if (addressId == 0) {
-            cartCheckoutVo.setCheckedAddress(0);
+            cartCheckoutVo.setCheckedAddress(null);
             cartCheckoutVo.setFreightPrice(new BigDecimal("0"));
         } else {
-            //TODO 查询地址信息
+            //Address address = addressMapper.findAddressById(addressId);
+            ExtAddress extAddress = addressMapper.findExtAddressById(addressId);
+            Integer province_id = extAddress.getProvince_id();
+            //TODO 如果是全国包邮该怎么处理
+
+            freightPriceList = freightMapper.getFreightPrice(province_id, templateIdList);
+            log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>freightPriceList:{}" + freightPriceList);
+            cartCheckoutVo.setCheckedAddress(extAddress);
+            cartCheckoutVo.setFreightPrice(freightPriceList.get(0).getStartFee());
         }
 
         cartCheckoutVo.setGoodsCount(index.getCartTotal().getGoodsCount());
-        cartCheckoutVo.setOrderTotalPrice(index.getCartTotal().getCheckedGoodsAmount());
-        cartCheckoutVo.setActualPrice(index.getCartTotal().getCheckedGoodsAmount());
+        BigDecimal totalPrice = new BigDecimal(index.getCartTotal().getCheckedGoodsAmount());
+        totalPrice = totalPrice.add(freightPriceList.get(0).getStartFee());
+        cartCheckoutVo.setOrderTotalPrice(totalPrice.toString());
+        cartCheckoutVo.setActualPrice(totalPrice.toString());
         cartCheckoutVo.setGoodsTotalPrice(index.getCartTotal().getCheckedGoodsAmount());
         cartCheckoutVo.setCheckedGoodsList(index.getCartList());
         cartCheckoutVo.setNumberChange(0);

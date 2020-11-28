@@ -1,8 +1,8 @@
-package com.shop.service;
+package com.wy.shop.service;
 
-import com.shop.entity.User;
-import com.shop.request.AuthInfoReq;
-import com.shop.vo.LoginVo;
+
+import com.wy.shop.request.AuthInfoReq;
+import com.wy.shop.vo.LoginVo;
 
 public interface LoginService {
 

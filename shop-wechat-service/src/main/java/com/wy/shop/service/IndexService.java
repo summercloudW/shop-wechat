@@ -1,7 +1,7 @@
-package com.shop.service;
+package com.wy.shop.service;
 
 
-import com.shop.vo.IndexInfoVo;
+import com.wy.shop.vo.IndexInfoVo;
 
 public interface IndexService {
 

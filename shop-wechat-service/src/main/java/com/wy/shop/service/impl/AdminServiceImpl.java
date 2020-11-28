@@ -1,8 +1,8 @@
-package com.shop.service.impl;
+package com.wy.shop.service.impl;
 
-import com.shop.entity.Admin;
-import com.shop.mapper.AdminMapper;
-import com.shop.service.AdminService;
+import com.wy.shop.entity.Admin;
+import com.wy.shop.mapper.AdminMapper;
+import com.wy.shop.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.shop.mapper.AddressMapper">
+<mapper namespace="com.wy.shop.mapper.AddressMapper">
 
-    <select id="getAddresses" resultType="com.shop.entity.Address">
+    <select id="getAddresses" resultType="com.wy.shop.entity.Address">
         SELECT * FROM hiolabs_address WHERE user_id=#{uid} AND is_delete=0
     </select>
 
-    <select id="findAddressById" parameterType="java.lang.Integer" resultType="com.shop.entity.Address">
+    <select id="findAddressById" parameterType="java.lang.Integer" resultType="com.wy.shop.entity.Address">
         SELECT * FROM hiolabs_address WHERE id=#{id}
     </select>
 
-    <insert id="saveAddress" parameterType="com.shop.entity.Address">
+    <insert id="saveAddress" parameterType="com.wy.shop.entity.Address">
         INSERT INTO hiolabs_address
         (name,user_id,country_id,province_id,city_id,district_id,address,is_default,is_delete)
         VALUES (#{address.name},#{address.user_id},#{address.country_id},#{address.province_id},#{address.city_id},#{address.district_id},#{address.address},#{address.is_default},#{address.is_delete})
@@ -18,6 +18,15 @@
 
     <select id="queryRecentId" resultType="java.lang.Integer">
         SELECT LAST_INSERT_ID() FROM hiolabs_address LIMIT 1
+    </select>
+
+    <select id="findExtAddressById" parameterType="java.lang.Integer" resultType="com.wy.shop.entity.ExtAddress">
+        SELECT ha.*,hr1.`name` AS province_name,hr2.`name` AS city_name,hr3.`name` AS district_name,CONCAT(hr1.`name`,hr2.`name`,hr3.`name`) AS full_region
+        FROM hiolabs_address ha
+        JOIN hiolabs_region hr1
+        JOIN hiolabs_region hr2
+        JOIN hiolabs_region hr3
+        WHERE ha.id=#{id} AND ha.province_id=hr1.id AND ha.city_id=hr2.id AND ha.district_id=hr3.id
     </select>
 
 </mapper>

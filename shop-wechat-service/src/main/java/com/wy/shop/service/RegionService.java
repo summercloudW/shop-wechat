@@ -1,6 +1,7 @@
-package com.shop.service;
+package com.wy.shop.service;
 
-import com.shop.entity.Region;
+
+import com.wy.shop.entity.Region;
 
 import java.util.List;
 

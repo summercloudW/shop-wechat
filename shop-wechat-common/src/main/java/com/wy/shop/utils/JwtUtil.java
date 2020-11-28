@@ -1,4 +1,4 @@
-package com.shop.util;
+package com.wy.shop.utils;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;

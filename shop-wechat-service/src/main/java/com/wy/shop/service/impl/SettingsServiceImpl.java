@@ -1,8 +1,8 @@
-package com.shop.service.impl;
+package com.wy.shop.service.impl;
 
-import com.shop.entity.ShowSettings;
-import com.shop.mapper.ShowSettingsMapper;
-import com.shop.service.SettingsService;
+import com.wy.shop.entity.ShowSettings;
+import com.wy.shop.mapper.ShowSettingsMapper;
+import com.wy.shop.service.SettingsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

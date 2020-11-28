@@ -1,8 +1,8 @@
-package com.shop.controller;
+package com.wy.shop.controller;
 
-import com.shop.result.Result;
-import com.shop.service.IndexService;
-import com.shop.vo.IndexInfoVo;
+import com.wy.shop.result.Result;
+import com.wy.shop.service.IndexService;
+import com.wy.shop.vo.IndexInfoVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -1,8 +1,8 @@
-package com.shop.service.impl;
+package com.wy.shop.service.impl;
 
-import com.shop.entity.Region;
-import com.shop.mapper.RegionMapper;
-import com.shop.service.RegionService;
+import com.wy.shop.entity.Region;
+import com.wy.shop.mapper.RegionMapper;
+import com.wy.shop.service.RegionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

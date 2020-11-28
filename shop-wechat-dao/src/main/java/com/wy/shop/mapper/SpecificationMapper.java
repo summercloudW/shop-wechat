@@ -1,10 +1,10 @@
-package com.shop.mapper;
+package com.wy.shop.mapper;
 
-import com.shop.entity.Specification;
-import lombok.Data;
+import com.wy.shop.entity.Specification;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Component;
 
+@Component
 @Mapper
 public interface SpecificationMapper {
 

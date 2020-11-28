@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.shop.mapper.UserMapper">
+<mapper namespace="com.wy.shop.mapper.UserMapper">
 
-    <select id="getUserByOpenId" parameterType="java.lang.String" resultType="com.shop.entity.User">
+    <select id="getUserByOpenId" parameterType="java.lang.String" resultType="com.wy.shop.entity.User">
         SELECT * FROM hiolabs_user WHERE weixin_openid=#{openid}
     </select>
 
 
-    <insert id="register" parameterType="com.shop.entity.User">
+    <insert id="register" parameterType="com.wy.shop.entity.User">
         INSERT INTO hiolabs_user (name,nickName,username,password,gender,birthday,register_time,last_login_time,last_login_ip,mobile,register_ip,avatar,weixin_openid,name_mobile,city,province,country)
         values(#{user.name},#{user.nickName},#{user.username},#{user.password},#{user.gender},#{user.birthday},#{user.register_time},#{user.last_login_time},#{user.last_login_ip},#{user.mobile},#{user.register_ip},#{user.avatar},#{user.weixin_openid},#{user.name_mobile},#{user.city},#{user.province},#{user.country})
     </insert>

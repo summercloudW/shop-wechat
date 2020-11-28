@@ -1,13 +1,14 @@
-package com.shop.mapper;
+package com.wy.shop.mapper;
 
-import com.shop.bo.IndexCartSearch;
-import com.shop.entity.Cart;
+import com.wy.shop.entity.Cart;
+import com.wy.shop.entity.IndexCartSearch;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 @Mapper
 public interface CartMapper {
 
@@ -26,5 +27,7 @@ public interface CartMapper {
     public void updateIsCheck(@Param("ischeck") Integer ischeck, @Param("productid") Integer productid, @Param("userId")Integer userId);
 
     public void updateFastCheck(@Param("userId") Integer userId, @Param("goodsId") Integer goodsId);
+
+
 
 }

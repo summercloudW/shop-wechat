@@ -6,10 +6,39 @@
         <artifactId>shop-wechat</artifactId>
         <groupId>com.wy.shop</groupId>
         <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
+    <description>公共的被其他模块依赖的模块</description>
+
+    <properties>
+        <java.version>1.8</java.version>
+    </properties>
 
     <artifactId>shop-wechat-service</artifactId>
+    <dependencies>
+        <dependency>
+            <groupId>com.wy.shop</groupId>
+            <artifactId>shop-wechat-common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.wy.shop</groupId>
+            <artifactId>shop-wechat-dao</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

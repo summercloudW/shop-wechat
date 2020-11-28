@@ -1,8 +1,8 @@
-package com.shop.service.impl;
+package com.wy.shop.service.impl;
 
-import com.shop.entity.Gallery;
-import com.shop.mapper.GalleryMapper;
-import com.shop.service.GalleryService;
+import com.wy.shop.entity.Gallery;
+import com.wy.shop.mapper.GalleryMapper;
+import com.wy.shop.service.GalleryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

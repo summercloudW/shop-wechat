@@ -1,4 +1,4 @@
-package com.shop.redis;
+package com.wy.shop.redis;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;

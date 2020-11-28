@@ -1,4 +1,4 @@
-package com.shop.util;
+package com.wy.shop.utils;
 
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.bouncycastle.util.encoders.Base64;

@@ -1,9 +1,8 @@
-package com.shop.mapper;
+package com.wy.shop.mapper;
 
-import com.shop.entity.Admin;
+import com.wy.shop.entity.Admin;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
-import org.springframework.stereotype.Repository;
 
 @Mapper
 public interface AdminMapper {

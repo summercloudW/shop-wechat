@@ -1,6 +1,6 @@
-package com.shop.vo;
+package com.wy.shop.vo;
 
-import com.shop.entity.CatalogGoods;
+import com.wy.shop.entity.CatalogGoods;
 import lombok.Data;
 
 import java.util.List;

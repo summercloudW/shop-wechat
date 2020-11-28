@@ -1,6 +1,7 @@
-package com.shop.service;
+package com.wy.shop.service;
 
-import com.shop.entity.Gallery;
+
+import com.wy.shop.entity.Gallery;
 
 import java.util.List;
 

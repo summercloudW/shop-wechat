@@ -1,18 +1,13 @@
-package com.shop.service.impl;
+package com.wy.shop.service.impl;
 
-import com.shop.bo.SpecificationList;
-import com.shop.entity.Goods;
-import com.shop.entity.GoodsSpecification;
-import com.shop.entity.Product;
-import com.shop.entity.Specification;
-import com.shop.mapper.GoodsMapper;
-import com.shop.service.*;
-import com.shop.vo.DetailVo;
+import com.wy.shop.entity.*;
+import com.wy.shop.mapper.GoodsMapper;
+import com.wy.shop.service.*;
+import com.wy.shop.vo.DetailVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service

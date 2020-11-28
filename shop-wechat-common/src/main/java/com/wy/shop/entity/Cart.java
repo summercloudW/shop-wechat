@@ -1,4 +1,4 @@
-package com.shop.entity;
+package com.wy.shop.entity;
 
 import lombok.Data;
 

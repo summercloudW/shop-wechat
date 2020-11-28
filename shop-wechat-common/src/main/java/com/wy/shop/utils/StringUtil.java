@@ -1,4 +1,4 @@
-package com.shop.util;
+package com.wy.shop.utils;
 
 public class StringUtil {
 

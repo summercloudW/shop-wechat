@@ -1,12 +1,8 @@
-package com.shop.service.impl;
+package com.wy.shop.service.impl;
 
-import com.shop.bo.IndexCategoryGoods;
-import com.shop.entity.Banner;
-import com.shop.entity.Category;
-import com.shop.entity.Goods;
-import com.shop.entity.Notice;
-import com.shop.service.*;
-import com.shop.vo.IndexInfoVo;
+import com.wy.shop.entity.*;
+import com.wy.shop.service.*;
+import com.wy.shop.vo.IndexInfoVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

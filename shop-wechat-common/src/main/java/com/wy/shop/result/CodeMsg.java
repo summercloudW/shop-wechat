@@ -1,4 +1,4 @@
-package com.shop.result;
+package com.wy.shop.result;
 
 public class CodeMsg {
 
@@ -27,6 +27,9 @@ public class CodeMsg {
     //秒杀模块 5005XX
     public static CodeMsg SECKILL_OVER = new CodeMsg(500500, "商品已经秒杀完毕");
     public static CodeMsg REPEATE_SECKILL = new CodeMsg(500501, "不能重复秒杀");
+
+    //支付失败
+    public static CodeMsg PAY_FAILURE = new CodeMsg(400, "微信支付失败");
 
     private CodeMsg() {
     }

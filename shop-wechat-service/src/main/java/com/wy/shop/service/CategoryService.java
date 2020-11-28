@@ -1,7 +1,8 @@
-package com.shop.service;
+package com.wy.shop.service;
 
-import com.shop.entity.CatalogCategory;
-import com.shop.entity.Category;
+
+import com.wy.shop.entity.CatalogCategory;
+import com.wy.shop.entity.Category;
 
 import java.util.List;
 

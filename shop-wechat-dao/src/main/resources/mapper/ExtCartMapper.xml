@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wy.shop.mapper.ExtCartMapper">
+
+    <select id="getSubmitInfo" resultType="com.wy.shop.entity.SubmitInfo">
+        SELECT
+        SUM(HC.number*HP.retail_price) AS goods_price,SUM(HC.number*HP.cost) AS  order_price,
+        GROUP_CONCAT(HP.goods_name) AS productNameGroup,GROUP_CONCAT(HC.number) AS numberGroup,
+        HA.province_id AS province,HA.city_id AS city,HA.name AS consignee,
+        HA.district_id AS district,HA.address AS address,HA.mobile AS mobile
+        FROM hiolabs_address HA JOIN hiolabs_cart HC JOIN hiolabs_product HP
+        WHERE HA.id=#{addressId} AND HC.product_id=HP.id AND HC.user_id=#{uid}
+        AND HC.checked=1 AND HC.is_delete=0 GROUP BY HC.user_id
+
+    </select>
+
+</mapper>

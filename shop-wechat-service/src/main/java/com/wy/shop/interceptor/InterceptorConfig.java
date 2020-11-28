@@ -1,4 +1,4 @@
-package com.shop.interceptor;
+package com.wy.shop.interceptor;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

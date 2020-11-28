@@ -1,10 +1,12 @@
-package com.shop.mapper;
+package com.wy.shop.mapper;
 
-import com.shop.entity.Gallery;
+import com.wy.shop.entity.Gallery;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 @Mapper
 public interface GalleryMapper {
 

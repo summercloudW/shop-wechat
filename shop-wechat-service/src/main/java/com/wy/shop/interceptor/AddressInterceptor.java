@@ -1,9 +1,9 @@
-package com.shop.interceptor;
+package com.wy.shop.interceptor;
 
 import com.alibaba.fastjson.JSON;
-import com.shop.result.CodeMsg;
-import com.shop.result.Result;
-import com.shop.util.JwtUtil;
+import com.wy.shop.result.CodeMsg;
+import com.wy.shop.result.Result;
+import com.wy.shop.utils.JwtUtil;
 import io.jsonwebtoken.Claims;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

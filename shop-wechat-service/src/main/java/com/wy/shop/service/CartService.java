@@ -1,13 +1,10 @@
-package com.shop.service;
+package com.wy.shop.service;
 
-import com.shop.bo.IndexCartSearch;
-import com.shop.entity.Cart;
-import com.shop.request.AddCartReq;
-import com.shop.vo.CartCheckoutVo;
-import com.shop.vo.CartIndexVo;
-import org.apache.ibatis.annotations.Param;
 
-import java.util.List;
+import com.wy.shop.entity.IndexCartSearch;
+import com.wy.shop.request.AddCartReq;
+import com.wy.shop.vo.CartCheckoutVo;
+import com.wy.shop.vo.CartIndexVo;
 
 public interface CartService {
 

@@ -1,9 +1,9 @@
-package com.shop.vo;
+package com.wy.shop.vo;
 
-import com.shop.bo.IndexCategoryGoods;
-import com.shop.entity.Banner;
-import com.shop.entity.Category;
-import com.shop.entity.Notice;
+import com.wy.shop.entity.Banner;
+import com.wy.shop.entity.Category;
+import com.wy.shop.entity.IndexCategoryGoods;
+import com.wy.shop.entity.Notice;
 import lombok.Data;
 
 import java.util.List;

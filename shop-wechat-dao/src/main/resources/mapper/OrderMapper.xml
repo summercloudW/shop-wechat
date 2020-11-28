@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.shop.mapper.OrderMapper">
+<mapper namespace="com.wy.shop.mapper.OrderMapper">
 
     <select id="getToPayOrderCount" parameterType="java.lang.Integer" resultType="java.lang.Integer">
         SELECT COUNT(id) FROM hiolabs_order WHERE user_id=1048 AND order_status=101
@@ -14,9 +14,35 @@
         SELECT COUNT(id) FROM hiolabs_order WHERE user_id=1048 AND order_status=301
     </select>
 
-    <insert id="insertOrder">
-        INSERT INTO hiolabs_order (order_sn,user_id,order_status,offline_pay,shipping_status,print_status,pay_status,consignee,country,province,city,district,address,print_info,mobile,postscript,admin_memo,shipping_fee,pay_name,pay_id)
-        values (#{order.order_sn},#{order.user_id},#{order.order_status},#{order.offline_pay},#{order.shipping_status},#{order.print_status},#{order.pay_status},#{order.consignee},#{order.country},#{order.province,city},#{order.district},#{order.address},#{order.print_info},mobile,#{order.postscript},#{order.admin_memo},#{order.shipping_fee,pay_name},#{order.pay_id})
+
+    <insert id="submitOrder" parameterType="com.wy.shop.entity.Order">
+        INSERT INTO hiolabs_order
+        (order_sn,user_id,order_status,offline_pay,
+          consignee,country,province,city,district,
+          address,print_info,mobile,postscript,
+          change_price,actual_price,order_price,
+          add_time,freight_price)
+          VALUES
+          (#{order.order_sn},#{order.user_id},#{order.order_status},#{order.offline_pay},
+          #{order.consignee},#{order.country},#{order.province},#{order.city},#{order.district},
+          #{order.address},#{order.print_info},#{order.mobile},#{order.postscript},
+          #{order.change_price},#{order.actual_price},#{order.order_price},
+          #{order.add_time},#{order.freight_price})
     </insert>
+
+    <select id="queryRecentId" resultType="java.lang.Integer">
+        SELECT LAST_INSERT_ID() FROM hiolabs_order LIMIT 1
+    </select>
+
+    <select id="getOrderByRecentId" parameterType="java.lang.Integer" resultType="com.wy.shop.entity.Order">
+        SELECT
+        id,order_sn,user_id,order_status,offline_pay,
+          consignee,country,province,city,district,
+          address,print_info,mobile,postscript,
+          change_price,actual_price,order_price,
+          add_time,freight_price
+        FROM hiolabs_order WHERE id=#{id}
+    </select>
+
 
 </mapper>

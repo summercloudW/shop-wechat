@@ -1,7 +1,7 @@
-package com.shop.handler;
+package com.wy.shop.handler;
 
 import com.alibaba.fastjson.JSONObject;
-import com.shop.util.MdzwUtils;
+import com.wy.shop.utils.MdzwUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;

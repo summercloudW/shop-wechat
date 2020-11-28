@@ -1,11 +1,12 @@
-package com.shop.mapper;
+package com.wy.shop.mapper;
 
-import com.shop.entity.Region;
+import com.wy.shop.entity.Region;
 import org.apache.ibatis.annotations.Mapper;
-import org.hibernate.validator.constraints.EAN;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 @Mapper
 public interface RegionMapper {
 

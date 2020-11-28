@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wy.shop.mapper.FreightMapper">
+    
+    <resultMap id="PriceResultMap" type="com.wy.shop.entity.FreightPrice">
+        <result column="start_fee" jdbcType="DECIMAL" property="startFee" />
+        <result column="add" jdbcType="INTEGER" property="add" />
+        <result column="add_fee" jdbcType="DECIMAL" property="addFee" />
+        <result column="free_by_number" jdbcType="SMALLINT" property="freeByNumber" />
+        <result column="free_by_money" jdbcType="DECIMAL" property="freeByMoney" />
+    </resultMap>
+
+    <select id="getFreightPrice" parameterType="java.lang.Integer" resultMap="PriceResultMap">
+        SELECT HFTG.start_fee,HFTG.`add`,HFTG.add_fee,HFTG.free_by_number,HFTG.free_by_money FROM
+        hiolabs_freight_template_detail HFTD JOIN hiolabs_freight_template_group HFTG
+        WHERE HFTG.id=HFTD.group_id AND HFTD.area=#{provinceId} AND HFTD.template_id IN (
+        <foreach collection="templateIdList" item="templateId" separator=",">
+            #{templateId}
+        </foreach>
+        )
+    </select>
+</mapper>

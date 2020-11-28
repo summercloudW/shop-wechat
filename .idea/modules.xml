@@ -3,6 +3,11 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/shop-wechat.iml" filepath="$PROJECT_DIR$/shop-wechat.iml" />
+      <module fileurl="file://$PROJECT_DIR$/shop-wechat-common/shop-wechat-common.iml" filepath="$PROJECT_DIR$/shop-wechat-common/shop-wechat-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/shop-wechat-controller/shop-wechat-controller.iml" filepath="$PROJECT_DIR$/shop-wechat-controller/shop-wechat-controller.iml" />
+      <module fileurl="file://$PROJECT_DIR$/shop-wechat-dao/shop-wechat-dao.iml" filepath="$PROJECT_DIR$/shop-wechat-dao/shop-wechat-dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/shop-wechat-service/shop-wechat-service.iml" filepath="$PROJECT_DIR$/shop-wechat-service/shop-wechat-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/shop-wechat-starter/shop-wechat-starter.iml" filepath="$PROJECT_DIR$/shop-wechat-starter/shop-wechat-starter.iml" />
     </modules>
   </component>
 </project>

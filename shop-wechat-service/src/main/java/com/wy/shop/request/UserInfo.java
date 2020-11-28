@@ -1,6 +1,5 @@
-package com.shop.request;
+package com.wy.shop.request;
 
-import com.shop.entity.User;
 import lombok.Data;
 
 /**

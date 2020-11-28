@@ -1,14 +1,14 @@
-package com.shop.controller;
+package com.wy.shop.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.shop.entity.User;
-import com.shop.result.Result;
-import com.shop.service.CartService;
-import com.shop.service.GoodsService;
-import com.shop.util.JwtUtil;
-import com.shop.util.StringUtil;
-import com.shop.vo.DetailVo;
-import com.shop.vo.IndexGoodsCount;
+import com.wy.shop.entity.User;
+import com.wy.shop.result.Result;
+import com.wy.shop.service.CartService;
+import com.wy.shop.service.GoodsService;
+import com.wy.shop.utils.JwtUtil;
+import com.wy.shop.utils.StringUtil;
+import com.wy.shop.vo.DetailVo;
+import com.wy.shop.vo.IndexGoodsCount;
 import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

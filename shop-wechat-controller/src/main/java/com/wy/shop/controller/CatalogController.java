@@ -1,12 +1,12 @@
-package com.shop.controller;
+package com.wy.shop.controller;
 
-import com.shop.entity.CatalogCategory;
-import com.shop.entity.Category;
-import com.shop.request.CatalogPageReq;
-import com.shop.result.Result;
-import com.shop.service.CatalogService;
-import com.shop.vo.CatalogCurrentListVo;
-import com.shop.vo.CategoryListVo;
+import com.wy.shop.entity.CatalogCategory;
+import com.wy.shop.entity.Category;
+import com.wy.shop.request.CatalogPageReq;
+import com.wy.shop.result.Result;
+import com.wy.shop.service.CatalogService;
+import com.wy.shop.vo.CatalogCurrentListVo;
+import com.wy.shop.vo.CategoryListVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

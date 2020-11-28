@@ -1,8 +1,8 @@
-package com.shop.service.impl;
+package com.wy.shop.service.impl;
 
-import com.shop.entity.User;
-import com.shop.mapper.UserMapper;
-import com.shop.service.UserService;
+import com.wy.shop.entity.User;
+import com.wy.shop.mapper.UserMapper;
+import com.wy.shop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

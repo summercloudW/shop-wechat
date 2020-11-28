@@ -1,19 +1,17 @@
-package com.shop.controller;
+package com.wy.shop.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.shop.bo.JwtUser;
-import com.shop.entity.Order;
-import com.shop.entity.User;
-import com.shop.request.AddressInfoReq;
-import com.shop.result.Result;
-import com.shop.service.OrderService;
-import com.shop.util.JwtUtil;
-import com.shop.util.TokenUtil;
-import com.shop.vo.OrderCountVo;
+import com.wy.shop.entity.JwtUser;
+import com.wy.shop.entity.Order;
+import com.wy.shop.request.AddressInfoReq;
+import com.wy.shop.result.Result;
+import com.wy.shop.service.OrderService;
+import com.wy.shop.utils.JwtUtil;
+import com.wy.shop.vo.OrderCountVo;
+import com.wy.shop.vo.PayInfoVo;
 import io.jsonwebtoken.Claims;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -47,8 +45,22 @@ public class OrderController {
 
     @PostMapping("/submit")
     @ResponseBody
-    public Result<Order> submit(@RequestBody AddressInfoReq addressInfoReq) {
-        return null;
+    public Result<PayInfoVo> submit(@RequestHeader("X-Nideshop-Token") String token, @RequestBody AddressInfoReq addressInfoReq) {
+        Order order = null;
+        PayInfoVo payInfoVo = null;
+        try {
+            Claims claims = JwtUtil.parseJWT(token);
+            String userStr = claims.getSubject();
+            log.info(">>>>>>>>>>>>>>>>>>>>>>" + userStr);
+            JwtUser user = JSON.parseObject(userStr, JwtUser.class);
+            int id = user.getId();
+            order = orderService.submitOrderInfo(id, addressInfoReq);
+            payInfoVo = new PayInfoVo();
+            payInfoVo.setOrderInfo(order);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return Result.success(payInfoVo);
     }
 
 }

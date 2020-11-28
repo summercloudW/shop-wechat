@@ -1,6 +1,7 @@
-package com.shop.service;
+package com.wy.shop.service;
 
-import com.shop.entity.Admin;
+
+import com.wy.shop.entity.Admin;
 
 public interface AdminService {
 

@@ -1,9 +1,10 @@
-package com.shop.service;
+package com.wy.shop.service;
 
-import com.shop.entity.CatalogCategory;
-import com.shop.entity.Category;
-import com.shop.request.CatalogPageReq;
-import com.shop.vo.CatalogCurrentListVo;
+
+import com.wy.shop.entity.CatalogCategory;
+import com.wy.shop.entity.Category;
+import com.wy.shop.request.CatalogPageReq;
+import com.wy.shop.vo.CatalogCurrentListVo;
 
 import java.util.List;
 

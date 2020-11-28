@@ -1,15 +1,14 @@
-package com.shop.mapper;
+package com.wy.shop.mapper;
 
-import com.shop.entity.Banner;
+import com.wy.shop.entity.Banner;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
-
+@Component
 @Mapper
 public interface BannerMapper {
 
-//    @Select("SELECT * FROM hiolabs_ad WHERE is_delete=0;")
     public List<Banner> getUseBanner();
 
 

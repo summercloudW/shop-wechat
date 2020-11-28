@@ -1,9 +1,9 @@
-package com.shop.vo;
+package com.wy.shop.vo;
 
-import com.shop.bo.SpecificationList;
-import com.shop.entity.Gallery;
-import com.shop.entity.Goods;
-import com.shop.entity.Product;
+import com.wy.shop.entity.Gallery;
+import com.wy.shop.entity.Goods;
+import com.wy.shop.entity.Product;
+import com.wy.shop.entity.SpecificationList;
 import lombok.Data;
 
 import java.util.List;

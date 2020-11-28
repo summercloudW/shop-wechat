@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.shop.mapper.GoodsSpecificationMapper">
+<mapper namespace="com.wy.shop.mapper.GoodsSpecificationMapper">
 
-    <select id="getGoodsSpecificationByGid" resultType="com.shop.entity.GoodsSpecification">
+    <select id="getGoodsSpecificationByGid" resultType="com.wy.shop.entity.GoodsSpecification">
         SELECT * FROM hiolabs_goods_specification WHERE goods_id=#{goodsId}
     </select>
 

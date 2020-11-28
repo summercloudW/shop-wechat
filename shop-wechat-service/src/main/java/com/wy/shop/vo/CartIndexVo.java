@@ -1,7 +1,7 @@
-package com.shop.vo;
+package com.wy.shop.vo;
 
-import com.shop.bo.IndexCartTotal;
-import com.shop.entity.Cart;
+import com.wy.shop.entity.Cart;
+import com.wy.shop.entity.IndexCartTotal;
 import lombok.Data;
 
 import java.util.List;

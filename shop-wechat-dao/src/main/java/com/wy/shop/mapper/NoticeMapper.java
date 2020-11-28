@@ -1,15 +1,15 @@
-package com.shop.mapper;
+package com.wy.shop.mapper;
 
-import com.shop.entity.Notice;
+import com.wy.shop.entity.Notice;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 @Mapper
 public interface NoticeMapper {
 
-//    @Select("SELECT * FROM hiolabs_notice")
     public List<Notice> getNoticeList();
 
 }

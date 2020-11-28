@@ -1,9 +1,6 @@
-package com.shop.entity;
+package com.wy.shop.entity;
 
-import com.shop.mapper.RegionMapper;
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 /**
  * @author : WangYB

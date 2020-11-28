@@ -1,9 +1,6 @@
-package com.shop.vo;
+package com.wy.shop.vo;
 
-import com.shop.mapper.RegionMapper;
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 /**
  * @author : WangYB
@@ -28,7 +25,5 @@ public class AddressVo {
     private String city_name;
     private String district_name;
     private String full_region;
-
-
 
 }

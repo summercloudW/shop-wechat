@@ -1,4 +1,4 @@
-package com.shop.request;
+package com.wy.shop.request;
 
 import lombok.Data;
 

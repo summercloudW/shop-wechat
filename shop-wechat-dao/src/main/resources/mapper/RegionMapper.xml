@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.shop.mapper.RegionMapper">
+<mapper namespace="com.wy.shop.mapper.RegionMapper">
 
     <select id="findNameById" parameterType="java.lang.Integer" resultType="java.lang.String">
         SELECT name FROM hiolabs_region WHERE id=#{id}
     </select>
 
-    <select id="findRegionListByPid" parameterType="java.lang.Integer" resultType="com.shop.entity.Region">
+    <select id="findRegionListByPid" parameterType="java.lang.Integer" resultType="com.wy.shop.entity.Region">
         SELECT * FROM hiolabs_region WHERE parent_id=#{pid}
     </select>
 

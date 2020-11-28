@@ -1,29 +1,23 @@
-package com.shop.controller;
+package com.wy.shop.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.shop.bo.IndexCartSearch;
-import com.shop.bo.JwtUser;
-import com.shop.entity.Cart;
-import com.shop.entity.User;
-import com.shop.request.AddCartReq;
-import com.shop.request.CartCheckReq;
-import com.shop.request.CartUpdateReq;
-import com.shop.result.Result;
-import com.shop.service.CartService;
-import com.shop.util.JwtUtil;
-import com.shop.util.StringUtil;
-import com.shop.util.TokenUtil;
-import com.shop.vo.CartCheckoutVo;
-import com.shop.vo.CartIndexVo;
-import com.shop.vo.CartTotal;
-import com.shop.vo.GoodsCountVo;
+import com.wy.shop.entity.IndexCartSearch;
+import com.wy.shop.entity.JwtUser;
+import com.wy.shop.entity.User;
+import com.wy.shop.request.AddCartReq;
+import com.wy.shop.request.CartCheckReq;
+import com.wy.shop.request.CartUpdateReq;
+import com.wy.shop.result.Result;
+import com.wy.shop.service.CartService;
+import com.wy.shop.utils.JwtUtil;
+import com.wy.shop.utils.StringUtil;
+import com.wy.shop.vo.CartCheckoutVo;
+import com.wy.shop.vo.CartIndexVo;
+import com.wy.shop.vo.CartTotal;
+import com.wy.shop.vo.GoodsCountVo;
 import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @RequestMapping("/cart")

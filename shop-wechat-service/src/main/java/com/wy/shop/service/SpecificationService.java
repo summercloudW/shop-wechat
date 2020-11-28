@@ -1,6 +1,7 @@
-package com.shop.service;
+package com.wy.shop.service;
 
-import com.shop.entity.Specification;
+
+import com.wy.shop.entity.Specification;
 
 public interface SpecificationService {
 

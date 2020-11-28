@@ -1,4 +1,4 @@
-package com.shop.vo;
+package com.wy.shop.vo;
 
 import lombok.Data;
 

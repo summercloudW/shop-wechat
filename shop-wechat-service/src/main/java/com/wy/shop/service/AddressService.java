@@ -1,7 +1,8 @@
-package com.shop.service;
+package com.wy.shop.service;
 
-import com.shop.entity.Address;
-import com.shop.vo.AddressVo;
+
+import com.wy.shop.entity.Address;
+import com.wy.shop.vo.AddressVo;
 
 import java.util.List;
 

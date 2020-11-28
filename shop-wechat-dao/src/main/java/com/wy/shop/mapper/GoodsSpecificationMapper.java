@@ -1,11 +1,12 @@
-package com.shop.mapper;
+package com.wy.shop.mapper;
 
-import com.shop.entity.GoodsSpecification;
+import com.wy.shop.entity.GoodsSpecification;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 @Mapper
 public interface GoodsSpecificationMapper {
 

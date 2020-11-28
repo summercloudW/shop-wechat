@@ -1,7 +1,7 @@
-package com.shop.util;
+package com.wy.shop.utils;
 
 import com.alibaba.fastjson.JSON;
-import com.shop.entity.User;
+import com.wy.shop.entity.User;
 import io.jsonwebtoken.Claims;
 
 public class TokenUtil {

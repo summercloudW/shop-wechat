@@ -1,6 +1,7 @@
-package com.shop.service;
+package com.wy.shop.service;
 
-import com.shop.entity.ShowSettings;
+
+import com.wy.shop.entity.ShowSettings;
 
 public interface SettingsService {
 

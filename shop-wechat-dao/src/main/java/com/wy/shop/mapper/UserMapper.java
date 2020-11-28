@@ -1,9 +1,11 @@
-package com.shop.mapper;
+package com.wy.shop.mapper;
 
-import com.shop.entity.User;
+import com.wy.shop.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Component;
 
+@Component
 @Mapper
 public interface UserMapper {
 

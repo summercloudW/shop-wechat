@@ -1,13 +1,13 @@
-package com.shop.service.impl;
+package com.wy.shop.service.impl;
 
-import com.shop.entity.CatalogCategory;
-import com.shop.entity.CatalogGoods;
-import com.shop.entity.Category;
-import com.shop.mapper.GoodsMapper;
-import com.shop.request.CatalogPageReq;
-import com.shop.service.CatalogService;
-import com.shop.service.CategoryService;
-import com.shop.vo.CatalogCurrentListVo;
+import com.wy.shop.entity.CatalogCategory;
+import com.wy.shop.entity.CatalogGoods;
+import com.wy.shop.entity.Category;
+import com.wy.shop.mapper.GoodsMapper;
+import com.wy.shop.request.CatalogPageReq;
+import com.wy.shop.service.CatalogService;
+import com.wy.shop.service.CategoryService;
+import com.wy.shop.vo.CatalogCurrentListVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.shop.mapper.ProductMapper">
+<mapper namespace="com.wy.shop.mapper.ProductMapper">
 
-    <select id="getProductListByGid" resultType="com.shop.entity.Product">
+    <select id="getProductListByGid" resultType="com.wy.shop.entity.Product">
         SELECT * FROM hiolabs_product WHERE goods_id=#{goods_id} AND is_delete=0
     </select>
 
-    <select id="getProductById" parameterType="java.lang.Integer" resultType="com.shop.entity.Product">
+    <select id="getProductById" parameterType="java.lang.Integer" resultType="com.wy.shop.entity.Product">
         SELECT * FROM hiolabs_product WHERE id=#{id}
     </select>
 

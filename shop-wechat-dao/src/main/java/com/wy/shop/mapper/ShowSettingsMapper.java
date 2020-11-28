@@ -1,13 +1,13 @@
-package com.shop.mapper;
+package com.wy.shop.mapper;
 
-import com.shop.entity.ShowSettings;
+import com.wy.shop.entity.ShowSettings;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.springframework.stereotype.Component;
 
+@Component
 @Mapper
 public interface ShowSettingsMapper {
 
-//    @Select("SELECT * FROM hiolabs_show_settings")
     public ShowSettings getShowSettings();
 
 }

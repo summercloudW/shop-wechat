@@ -11,5 +11,13 @@
 
     <artifactId>shop-wechat-starter</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.wy.shop</groupId>
+            <artifactId>shop-wechat-controller</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
 
 </project>

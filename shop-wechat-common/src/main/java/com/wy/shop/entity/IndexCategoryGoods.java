@@ -1,6 +1,5 @@
-package com.shop.bo;
+package com.wy.shop.entity;
 
-import com.shop.entity.Goods;
 import lombok.Data;
 
 import java.util.List;

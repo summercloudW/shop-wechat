@@ -1,9 +1,9 @@
-package com.shop.service.impl;
+package com.wy.shop.service.impl;
 
-import com.shop.entity.CatalogCategory;
-import com.shop.entity.Category;
-import com.shop.mapper.CategoryMapper;
-import com.shop.service.CategoryService;
+import com.wy.shop.entity.CatalogCategory;
+import com.wy.shop.entity.Category;
+import com.wy.shop.mapper.CategoryMapper;
+import com.wy.shop.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package com.shop.result;
+package com.wy.shop.result;
 
 public class Result<T> {
 	

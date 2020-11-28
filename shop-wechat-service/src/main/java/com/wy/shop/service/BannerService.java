@@ -1,6 +1,7 @@
-package com.shop.service;
+package com.wy.shop.service;
 
-import com.shop.entity.Banner;
+
+import com.wy.shop.entity.Banner;
 
 import java.util.List;
 

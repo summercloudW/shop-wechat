@@ -1,6 +1,7 @@
-package com.shop.service;
+package com.wy.shop.service;
 
-import com.shop.entity.Product;
+
+import com.wy.shop.entity.Product;
 
 import java.util.List;
 
