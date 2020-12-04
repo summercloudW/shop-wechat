@@ -137,6 +137,18 @@
 			<artifactId>quartz</artifactId>
 			<version>2.3.0</version>
 		</dependency>
+		<dependency>
+			<groupId>org.quartz-scheduler</groupId>
+			<artifactId>quartz-jobs</artifactId>
+			<version>2.3.0</version>
+		</dependency>
+		<!-- 引入 context-support ，否则quartz 容器无法得到spring的bean -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>4.3.12.RELEASE</version>
+			<scope>compile</scope>
+		</dependency>
 
 		<!--	spring状态机	-->
 		<dependency>

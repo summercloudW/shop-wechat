@@ -23,4 +23,6 @@ public interface GoodsMapper {
 
     public Goods getSpecificationGoods(Integer id);
 
+    public List<Goods> getGoodsListByKeyword(String keyword);
+
 }

@@ -19,6 +19,10 @@ public class Result<T> {
 	public static  <T> Result<T> error(CodeMsg codeMsg){
 		return new Result<T>(codeMsg);
 	}
+
+	public static <T> Result<T> error(int errno, String errmsg) {
+		return new Result<>(errno, errmsg);
+	}
 	
 	private Result(T data) {
 		this.data = data;

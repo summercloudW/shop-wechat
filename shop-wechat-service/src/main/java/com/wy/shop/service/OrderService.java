@@ -11,4 +11,8 @@ public interface OrderService {
 
     public Order submitOrderInfo(Integer uid, AddressInfoReq addressInfoReq);
 
+    public void updateOrderStatus(Integer newStatus,Integer oldStatus, Integer userId);
+
+    public void updateOutTimeOrder();
+
 }

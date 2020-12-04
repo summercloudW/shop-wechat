@@ -1,10 +1,12 @@
 package com.wy.shop.interceptor;
 
 import com.alibaba.fastjson.JSON;
+import com.wy.shop.exception.TokenExpiredException;
 import com.wy.shop.result.CodeMsg;
 import com.wy.shop.result.Result;
 import com.wy.shop.utils.JwtUtil;
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -28,6 +30,10 @@ public class AddressInterceptor implements HandlerInterceptor {
         response.setContentType( "application/json; charset=utf-8");
         String token = request.getHeader("X-Nideshop-Token");
         log.info(">>>>>>>>>>>>>>>>>>>>>" + token);
+        boolean expiration = JwtUtil.isExpiration(token);
+        if (expiration) {
+            throw new TokenExpiredException();
+        }
         if (token == null && token.length()==0) {
             log.info(">>>>>>>>>>>>>>");
             Result<CodeMsg> result = Result.success(CodeMsg.SESSION_ERROR);
@@ -35,10 +41,8 @@ public class AddressInterceptor implements HandlerInterceptor {
             writer.write(JSON.toJSONString(result));
         }
         else if (token != null){
-            Claims claims = JwtUtil.parseJWT(token);
-            String subject = claims.getSubject();
-            log.info(">>>>>>>>>>>>" + subject);
-            if (subject != null) {
+            Integer id = JwtUtil.getId(token);
+            if (id != null) {
                 return true;
             }
         }

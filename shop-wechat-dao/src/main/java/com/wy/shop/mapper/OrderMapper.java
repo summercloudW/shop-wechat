@@ -21,4 +21,10 @@ public interface OrderMapper {
 
     public Order getOrderByRecentId(Integer id);
 
+    public void updateOrderStatus(@Param("oldStatus") Integer oldStatus,
+                                  @Param("newStatus") Integer newStatus,
+                                  @Param("userId") Integer userId);
+
+    public void updateOutTimeOrder();
+
 }

@@ -1,9 +1,8 @@
 package com.wy.shop.utils;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.JwtBuilder;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import com.alibaba.fastjson.JSON;
+import com.wy.shop.entity.User;
+import io.jsonwebtoken.*;
 
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
@@ -48,17 +47,41 @@ public class JwtUtil {
     }
 
     /**
+     * 获取id
+     */
+    public static Integer getId(String token) {
+        Claims claims = JwtUtil.parseJWT(token);
+        String userStr = claims.getSubject();
+        User user = JSON.parseObject(userStr, User.class);
+        int uid = user.getId();
+        return uid;
+    }
+
+
+    /**
+     * 是否已过期
+     */
+    public static boolean isExpiration(String token) {
+        try {
+            return parseJWT(token).getExpiration().before(new Date());
+        } catch (ExpiredJwtException e) {
+            return true;
+        }
+    }
+
+    /**
      * 解析令牌数据
      * @param jwt
      * @return
-     * @throws Exception
+     * @throws
      */
-    public static Claims parseJWT(String jwt) throws Exception {
+    public static Claims parseJWT(String jwt)  {
         SecretKey secretKey = generalKey();
         return Jwts.parser()
                 .setSigningKey(secretKey)
                 .parseClaimsJws(jwt)
                 .getBody();
     }
+
 
 }

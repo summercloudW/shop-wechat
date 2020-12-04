@@ -30,4 +30,11 @@ public class AdminController {
         return admin;
     }
 
+
+    @GetMapping("/update")
+    @ResponseBody
+    public void updateUsername() {
+        adminService.update();
+    }
+
 }

@@ -1,6 +1,7 @@
 package com.wy.shop.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.wy.shop.entity.Goods;
 import com.wy.shop.entity.User;
 import com.wy.shop.result.Result;
 import com.wy.shop.service.CartService;
@@ -12,6 +13,9 @@ import com.wy.shop.vo.IndexGoodsCount;
 import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.constraints.Min;
+import java.util.List;
 
 @RestController
 @RequestMapping("/goods")
@@ -46,6 +50,13 @@ public class GoodsController {
         }
         DetailVo detailInfo = goodsService.getDetailInfo(id);
         return Result.success(detailInfo);
+    }
+
+
+    @GetMapping("/list")
+    @ResponseBody
+    public List<Goods> getGoodsListByKeyword(String keyword) {
+        return goodsService.getGoodsListByKeyword(keyword);
     }
 
 }

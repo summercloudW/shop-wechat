@@ -45,4 +45,15 @@
     </select>
 
 
+    <update id="updateOrderStatus" >
+        UPDATE hiolabs_order HO SET HO.order_status=#{newStatus} WHERE
+        HO.user_id=#{userId} AND HO.order_status=#{oldStatus} AND UNIX_TIMESTAMP(NOW())-3600>=HO.add_time
+    </update>
+
+    <update id="updateOutTimeOrder">
+        UPDATE hiolabs_order HO SET HO.order_status=103 WHERE
+        HO.order_status=101 AND UNIX_TIMESTAMP(NOW())-3600>=HO.add_time
+    </update>
+
+
 </mapper>

@@ -67,4 +67,10 @@ public class GoodsServiceImpl implements GoodsService {
         return goodsMapper.getSpecificationGoods(goods_id);
     }
 
+    @Override
+    public List<Goods> getGoodsListByKeyword(String keyword) {
+        return goodsMapper.getGoodsListByKeyword(keyword);
+    }
+
+
 }

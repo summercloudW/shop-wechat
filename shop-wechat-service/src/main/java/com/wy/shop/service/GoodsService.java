@@ -16,4 +16,6 @@ public interface GoodsService {
 
     public Goods getGoodsById(Integer goods_id);
 
+    public List<Goods> getGoodsListByKeyword(String keyword);
+
 }

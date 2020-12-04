@@ -26,7 +26,6 @@ public class OrderServiceImpl implements OrderService {
     private ExtCartMapper extCartMapper;
 
     @Override
-    @Transactional
     public OrderCountVo getOrderCount(Integer userid) {
         Integer toDeliveryCount = orderMapper.getToDeliveryCount(userid);
         Integer toPayOrderCount = orderMapper.getToPayOrderCount(userid);
@@ -55,7 +54,7 @@ public class OrderServiceImpl implements OrderService {
         order.setPostscript(addressInfoReq.getPostscript());
         order.setProvince(submitInfo.getProvince());
         order.setUser_id(uid);
-        order.setAdd_time(new Date().getTime()/1000);
+        order.setAdd_time(new Date().getTime() / 1000);
         order.setActual_price(new BigDecimal(addressInfoReq.getActualPrice()));
         order.setFreight_price(addressInfoReq.getFreightPrice());
         order.setChange_price(submitInfo.getGoods_price().subtract(submitInfo.getOrder_price()));
@@ -72,11 +71,12 @@ public class OrderServiceImpl implements OrderService {
         return recentOrder;
     }
 
+
     /**
      * 生成订单编号
+     *
      * @param mobile
      * @return
-     *
      */
     public String generateOrderSn(String mobile) {
         Date date = new Date();
@@ -94,8 +94,19 @@ public class OrderServiceImpl implements OrderService {
         return stringBuilder.toString();
     }
 
+    @Override
+    public void updateOrderStatus(Integer oldStatus, Integer newStatus, Integer userId) {
+        orderMapper.updateOrderStatus(oldStatus, newStatus, userId);
+    }
+
+    @Override
+    public void updateOutTimeOrder() {
+        orderMapper.updateOutTimeOrder();
+    }
+
     /**
      * 生成打印的商品信息
+     *
      * @param productNameGroup
      * @param numberGroup
      * @return
@@ -106,7 +117,7 @@ public class OrderServiceImpl implements OrderService {
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < productNames.length; i++) {
             stringBuilder
-                    .append(i+1)
+                    .append(i + 1)
                     .append("、")
                     .append(productNames[i])
                     .append(" ")
@@ -116,5 +127,7 @@ public class OrderServiceImpl implements OrderService {
         }
         return stringBuilder.toString();
     }
+
+
 
 }

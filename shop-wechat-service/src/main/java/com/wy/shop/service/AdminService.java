@@ -7,4 +7,8 @@ public interface AdminService {
 
     public Admin getAdmin();
 
+    public void updateUsername();
+
+    public void update();
+
 }
