@@ -25,4 +25,6 @@ public interface GoodsMapper {
 
     public List<Goods> getGoodsListByKeyword(String keyword);
 
+    public List<Goods> getAllGoods();
+
 }

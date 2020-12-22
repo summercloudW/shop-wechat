@@ -1,6 +1,9 @@
 package com.wy.shop.controller;
 
+import com.wy.shop.service.GoodsService;
 import com.wy.shop.service.KeywordsService;
+import com.wy.shop.service.SearchContentService;
+import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +22,8 @@ public class SearchController {
 
     @Autowired
     private KeywordsService keywordsService;
+    @Autowired
+    private SearchContentService searchContentService;
 
     @GetMapping("/helper")
     @ResponseBody
@@ -26,6 +31,23 @@ public class SearchController {
         return keywordsService.getKeywordList(keyword);
     }
 
+    @GetMapping("/init")
+    public void initData() {
+        try {
+            searchContentService.addGoodsToEs();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
+
+
+    @GetMapping("/list")
+    public void searchGoods(String keyword,
+                            String sort,
+                            String order,
+                            String sales) throws IOException {
+        searchContentService.searchPages(keyword, 1, 20);
+    }
 
 }

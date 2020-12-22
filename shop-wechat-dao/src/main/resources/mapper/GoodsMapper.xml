@@ -28,4 +28,8 @@
         SELECT * FROM hiolabs_goods WHERE is_delete=0 AND is_on_sale=1 name LIKE CONCAT('%', #{keyword}, '%')
     </select>
 
+    <select id="getAllGoods" resultType="com.wy.shop.entity.Goods">
+        SELECT * FROM hiolabs_goods
+    </select>
+
 </mapper>
