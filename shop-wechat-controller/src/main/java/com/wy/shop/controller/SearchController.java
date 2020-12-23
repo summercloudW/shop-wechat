@@ -4,6 +4,7 @@ import com.wy.shop.service.GoodsService;
 import com.wy.shop.service.KeywordsService;
 import com.wy.shop.service.SearchContentService;
 import java.io.IOException;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,11 +44,12 @@ public class SearchController {
 
 
     @GetMapping("/list")
-    public void searchGoods(String keyword,
+    public List<Map<String, Object>> searchGoods(String keyword,
                             String sort,
                             String order,
                             String sales) throws IOException {
-        searchContentService.searchPages(keyword, 1, 20);
+        List<Map<String, Object>> list = searchContentService.searchPages(keyword, 1, 20);
+        return list;
     }
 
 }

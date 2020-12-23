@@ -1,9 +1,9 @@
 package com.wy.shop.entity;
 
-import groovy.transform.ToString;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import lombok.ToString;
 
 /**
  * @author : WangYB
