@@ -6,11 +6,14 @@ import com.wy.shop.entity.User;
 import com.wy.shop.result.Result;
 import com.wy.shop.service.CartService;
 import com.wy.shop.service.GoodsService;
+import com.wy.shop.service.SearchContentService;
 import com.wy.shop.utils.JwtUtil;
 import com.wy.shop.utils.StringUtil;
 import com.wy.shop.vo.DetailVo;
 import com.wy.shop.vo.IndexGoodsCount;
 import io.jsonwebtoken.Claims;
+import java.io.IOException;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,6 +28,8 @@ public class GoodsController {
     private GoodsService goodsService;
     @Autowired
     CartService cartService;
+    @Autowired
+    private SearchContentService searchContentService;
 
     @GetMapping("/count")
     public Result<IndexGoodsCount> getGoodsCount() {
@@ -54,9 +59,12 @@ public class GoodsController {
 
 
     @GetMapping("/list")
-    @ResponseBody
-    public List<Goods> getGoodsListByKeyword(String keyword) {
-        return goodsService.getGoodsListByKeyword(keyword);
+    public Result<List<Map<String, Object>>> searchGoods(String keyword,
+                                                         String sort,
+                                                         String order,
+                                                         String sales) throws IOException {
+        List<Map<String, Object>> list = searchContentService.searchPages(keyword, 1, 20);
+        return Result.success(list);
     }
 
 }

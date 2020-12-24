@@ -1,5 +1,6 @@
 package com.wy.shop.controller;
 
+import com.wy.shop.result.Result;
 import com.wy.shop.service.GoodsService;
 import com.wy.shop.service.KeywordsService;
 import com.wy.shop.service.SearchContentService;
@@ -44,12 +45,12 @@ public class SearchController {
 
 
     @GetMapping("/list")
-    public List<Map<String, Object>> searchGoods(String keyword,
-                            String sort,
-                            String order,
-                            String sales) throws IOException {
+    public Result<List<Map<String, Object>>> searchGoods(String keyword,
+                                                        String sort,
+                                                        String order,
+                                                        String sales) throws IOException {
         List<Map<String, Object>> list = searchContentService.searchPages(keyword, 1, 20);
-        return list;
+        return Result.success(list);
     }
 
 }

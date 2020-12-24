@@ -69,25 +69,27 @@ public class SearchContentServiceImpl implements SearchContentService {
             pageNo = 1;
         }
 
-        SearchRequest searchRequest = new SearchRequest("jd_goods");
+        SearchRequest searchRequest = new SearchRequest("shop_wechat_goods");
         SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
 
         // 分页
         searchSourceBuilder.from(pageNo);
         searchSourceBuilder.size(pageSize);
         // 精准匹配
-        TermQueryBuilder termQueryBuilder = QueryBuilders.termQuery("title", keyword);
+        char[] chars = keyword.toCharArray();
         BoolQueryBuilder boolQueryBuilder = new BoolQueryBuilder();
-        boolQueryBuilder.must(termQueryBuilder);
-
-        searchSourceBuilder.query(termQueryBuilder);
+        for (char singleKey : chars) {
+            TermQueryBuilder termQueryBuilder = QueryBuilders.termQuery("name", String.valueOf(singleKey));
+            boolQueryBuilder.must(termQueryBuilder);
+        }
+        searchSourceBuilder.query(boolQueryBuilder);
         searchSourceBuilder.timeout(new TimeValue(10, TimeUnit.SECONDS));
         //高亮
         HighlightBuilder highlightBuilder = new HighlightBuilder();
-        highlightBuilder.field("title");
+        highlightBuilder.field("name");
         highlightBuilder.requireFieldMatch(false);
-        highlightBuilder.preTags("<span style='color:red'>");
-        highlightBuilder.postTags("</span>");
+        highlightBuilder.preTags("<text style='color:red'>");
+        highlightBuilder.postTags("</text>");
         searchSourceBuilder.highlighter(highlightBuilder);
         //执行搜索
         searchRequest.source(searchSourceBuilder);
@@ -96,7 +98,7 @@ public class SearchContentServiceImpl implements SearchContentService {
         List<Map<String, Object>> list = new ArrayList<>();
         for (SearchHit document : response.getHits().getHits()) {
             Map<String, HighlightField> highlightFields = document.getHighlightFields();
-            HighlightField title = highlightFields.get("title");
+            HighlightField title = highlightFields.get("name");
             Map<String, Object> sourceAsMap = document.getSourceAsMap();
 
             //解析高亮的字段, 将原来的字段替换为我们高亮的字段即可
@@ -107,7 +109,7 @@ public class SearchContentServiceImpl implements SearchContentService {
                     newTitle += text;
                 }
                 //高亮字段替换原来的字段
-                sourceAsMap.put("title", newTitle);
+                sourceAsMap.put("name", newTitle);
             }
             list.add(sourceAsMap);
         }
