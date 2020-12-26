@@ -3,6 +3,7 @@ package com.wy.shop.controller;
 import com.alibaba.fastjson.JSON;
 import com.wy.shop.entity.JwtUser;
 import com.wy.shop.entity.Order;
+import com.wy.shop.mq.ConsumerMessageSender;
 import com.wy.shop.mq.RabbitOrderSender;
 import com.wy.shop.request.AddressInfoReq;
 import com.wy.shop.result.Result;
@@ -24,6 +25,8 @@ public class OrderController {
     private OrderService orderService;
     @Autowired
     private RabbitOrderSender rabbitOrderSender;
+    @Autowired
+    private ConsumerMessageSender consumerMessageSender;
 
     @GetMapping("/orderCount")
     @ResponseBody
@@ -71,7 +74,7 @@ public class OrderController {
         Order order = new Order();
         order.setId(233244);
         order.setPay_id("edfdfwdgdhsaaga");
-        rabbitOrderSender.sendOrder(order);
+        consumerMessageSender.publishMessage(order);
     }
 
 }
